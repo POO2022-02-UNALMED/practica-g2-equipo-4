@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-import gestorAplicacion.instalaciones.Instalacion;
-import gestorAplicacion.servicios.Reserva;
+import gestorAplicacion.instalaciones.*;
+import gestorAplicacion.servicios.*;
 
 public class Deserializador {
     private static File rutaTemp = new File("src\\main\\java\\baseDatos\\temp");
@@ -19,11 +19,11 @@ public class Deserializador {
         ObjectInputStream ois;
         
         for(File file: docs){
-            if(file.getAbsolutePath().contains("instalaciones")){
+            if(file.getAbsolutePath().contains("instalacionesAdultos")){
                 try{
                     fis = new FileInputStream(file);
                     ois = new ObjectInputStream(fis);
-                    Instalacion.setInstalaciones((ArrayList<Instalacion>) ois.readObject());
+                    InstalacionAdultos.setInstalacionesAdultos((ArrayList<Instalacion>) ois.readObject());
                 }catch(FileNotFoundException e){
                     e.printStackTrace();
                 }catch(IOException e){
@@ -31,7 +31,23 @@ public class Deserializador {
                 }catch(ClassNotFoundException e){
                     e.printStackTrace();
                 }
-            }else if(file.getAbsolutePath().contains("reservas")){
+                
+            }else if(file.getAbsolutePath().contains("instalacionesMenores")){
+                try{
+                    fis = new FileInputStream(file);
+                    ois = new ObjectInputStream(fis);
+                    InstalacionMenores.setInstalacionesMenores((ArrayList<Instalacion>) ois.readObject());
+                }catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }catch(ClassNotFoundException e){
+                    e.printStackTrace();
+                }
+            }
+            
+            
+            else if(file.getAbsolutePath().contains("reservas")){
                 try{
                     fis = new FileInputStream(file);
                     ois = new ObjectInputStream(fis);

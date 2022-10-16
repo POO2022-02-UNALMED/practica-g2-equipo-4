@@ -2,7 +2,8 @@ package uiMain;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
-import gestorAplicacion.servicios.Reserva;
+import gestorAplicacion.servicios.*;
+import gestorAplicacion.instalaciones.*;
 
 public class Main {
     

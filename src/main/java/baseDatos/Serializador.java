@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
-import gestorAplicacion.instalaciones.Instalacion;
-import gestorAplicacion.servicios.Reserva;
+import gestorAplicacion.instalaciones.*;
+import gestorAplicacion.servicios.*;
 
 public class Serializador {
     private static File rutaTemp = new File("src\\main\\java\\baseDatos\\temp");
@@ -28,17 +28,33 @@ public class Serializador {
         }
         
         for (File file: docs){
-            if(file.getAbsolutePath().contains("instalaciones")){
+            if(file.getAbsolutePath().contains("instalacionesAdulto")){
                 try{
                     fos = new FileOutputStream(file);
                     oos = new ObjectOutputStream(fos);
-                    oos.writeObject(Instalacion.getInstalaciones());
+                    oos.writeObject(InstalacionAdultos.getInstalacionesAdultos());
                 }catch(FileNotFoundException e){
                     e.printStackTrace();
                 }catch(IOException e){
                     e.printStackTrace();
                 }
-            }else if(file.getAbsolutePath().contains("reservas")){
+                
+                
+                
+                
+            }else if(file.getAbsolutePath().contains("instalacionesMenores")){
+                try{
+                    fos = new FileOutputStream(file);
+                    oos = new ObjectOutputStream(fos);
+                    oos.writeObject(InstalacionMenores.getInstalacionesMenores());
+                }catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            
+            else if(file.getAbsolutePath().contains("reservas")){
                 try{
                     fos = new FileOutputStream(file);
                     oos = new ObjectOutputStream(fos);
