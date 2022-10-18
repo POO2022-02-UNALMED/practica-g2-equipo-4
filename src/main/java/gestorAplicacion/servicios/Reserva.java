@@ -21,11 +21,11 @@ public class Reserva implements Serializable {
     private static ArrayList<Reserva> reservas = new ArrayList<>();
     
     //atributos basicos. L
-    public int idReserva;
-    public Cliente cliente;
-    public String tipoTiquete;
+    protected int idReserva;
+    protected Cliente cliente;
+    protected String tipoTiquete;
     ///  reservaEstado: 0 = pendiente, 1 = concretada/pagada y convierte a ticket, 2 = cancelada. L
-    public int reservaEstado = 0;
+    private int estado = 0;
     
     //no se. L
     public Reserva(){
@@ -46,17 +46,20 @@ public class Reserva implements Serializable {
     	public void generar_reserva () {
     		//Falta concretar como hacerlo. L
     	}
-        public void cancelar_reserva () {  
-        	this.reservaEstado = 2;
+        public void set_estado () {  
+        	this.estado = 2;
     	//falta borrarla del registro de reservas activas. L  	    
     }
         public void modificar_cliente (Cliente clienteNuevo) {
         	this.cliente = clienteNuevo;      	
         }
-        public String verificar_tipoId() {
+        public String verificar_tipoId() { //no logré poner que fuera solo de pr
         	return this.cliente.tipoId;
         }
         public Cliente get_Cliente() {
         	return this.cliente;        	
+        }
+        public int consultarEstado() {
+        	return this.estado;
         }
 }
