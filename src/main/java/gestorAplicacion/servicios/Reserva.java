@@ -7,15 +7,25 @@ package gestorAplicacion.servicios;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+// no se
 /**
  *
  * @author USUARIO
  */
+
+
 public class Reserva implements Serializable {
     
+	//no se
     private static final long serialVersionUID = 1L;
     private static ArrayList<Reserva> reservas = new ArrayList<>();
     
+    //atributos basicos
+    public int idReserva;
+    public Cliente client;
+    public String tipoTiquete;
+    
+    //no se
     public Reserva(){
         reservas.add(this);
     }
@@ -27,5 +37,8 @@ public class Reserva implements Serializable {
     public static ArrayList<Reserva> getReservas(){
         return reservas;
     }
+    
+    //Metodos del genmymod
+    
     
 }
