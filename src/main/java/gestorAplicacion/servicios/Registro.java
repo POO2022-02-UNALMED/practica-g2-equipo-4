@@ -60,11 +60,24 @@ public class Registro {
         }
 
     }
-    public static boolean eliminarReserva(int id){
+    public static void eliminarReserva(int id){
         Cliente cliente = buscarReserva(id);
         if(cliente != null){
             cliente.reserva = null;
             reservas.remove(cliente);
+        }
+
+    }
+    public static boolean existeCliente(int id){
+        if(buscarCliente(id) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static boolean existeReserva(int id){
+        if(buscarReserva(id) != null){
             return true;
         }
         else{
