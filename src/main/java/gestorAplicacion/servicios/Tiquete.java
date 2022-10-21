@@ -1,10 +1,11 @@
+
 package gestorAplicacion.servicios;
 
 import java.io.Serializable;
 
 
 public class Tiquete extends Reserva implements Serializable {
-    
+/*
     private static final long serialVersionUID = 1L;
     
     private boolean incluyeCajitaInfantil;
@@ -58,7 +59,7 @@ public class Tiquete extends Reserva implements Serializable {
     public void setFecha(int fecha) {
         this.fecha = fecha;
     }
-    
+    */
     
 }
-    
+

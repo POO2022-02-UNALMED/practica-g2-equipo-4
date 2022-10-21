@@ -1,7 +1,7 @@
 package gestorAplicacion.instalaciones;
 
+import java.util.ArrayList;
 import java.io.Serializable;
-
 public abstract class Instalacion implements Serializable{
     
     private static final long serialVersionUID = 1L;
