@@ -1,14 +1,37 @@
 package gestorAplicacion.servicios;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Registro {
     protected static int cantidadClientesDiaActual = 0;
     protected static final int capacidadDiaActual = 1000;
+    protected static HashMap<String, Integer> calendario = new HashMap<>();
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     protected static ArrayList<Cliente> reservas = new ArrayList<>();
     protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
+    /*El formato de fecha que vamos a utilizar es dd-mm-aaaa*/
+    public static void inicioCalendrio(String fechaInicio){
+        String key;
+        int dia = Integer.parseInt(fechaInicio.split("-")[0])+1;
+        int mes = Integer.parseInt(fechaInicio.split("-")[1]);
+        int anio = Integer.parseInt(fechaInicio.split("-")[2]);
+        for(int i = 0; i < 365; i++){
+            key = dia + "-" + mes + "-" + anio;
+            calendario.put(key, 0);
+            dia++;
+            if(dia > 31 || (dia > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) || (dia > 28 && mes == 2)){
+                dia = 1;
+                mes++;
+                if(mes > 12){
+                    mes = 1;
+                    anio++;
+                }
+            }
+        }
+
+    }
     public static boolean agregarIngreso(){
         if(cantidadClientesDiaActual < capacidadDiaActual){             
             cantidadClientesDiaActual++;
