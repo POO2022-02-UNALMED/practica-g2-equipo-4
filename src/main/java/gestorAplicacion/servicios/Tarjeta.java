@@ -83,7 +83,7 @@ public class Tarjeta implements Serializable {
 
     @Override
     public String toString() {
-        return "Tarjeta{" + "tipoTarjeta=" + tipoTarjeta + ", costoTarjeta=" + costoTarjeta + ", idTarjeta=" + idTarjeta + ", costo=" + costo + ", tipoT=" + tipoT + ", tarjetaFisica=" + tarjetaFisica + ", activa=" + activa + ", cantidadDeEntradas=" + cantidadDeEntradas + ", saldo=" + saldo + '}';
+        return "Tarjeta{" + "tipoTarjeta=" + tipoTarjeta[tipoT] + ", costoTarjeta=" + costoTarjeta[tipoT] + ", idTarjeta=" + idTarjeta + ", costo=" + costo +", tarjetaFisica= " + tarjetaFisica + ", activa= " + activa + ", cantidadDeEntradas= " + cantidadDeEntradas + ", saldo= " + saldo + '}';
     }
 
 

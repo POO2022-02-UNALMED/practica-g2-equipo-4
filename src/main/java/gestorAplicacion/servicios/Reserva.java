@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Reserva implements Serializable {
     //private static final long serialVersionUID = 1L;
     protected int idReserva;
-    private String fecha;
+    private String fecha; /*La fecha tiene el formato dd-mm-aaa*/
     private boolean activa= false;
     protected Tarjeta tarjeta;
 

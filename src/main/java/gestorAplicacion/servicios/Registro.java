@@ -72,7 +72,7 @@ public class Registro {
         
     public static boolean agregarCliente(Cliente c){
         Tarjeta tarjeta = c.reserva.tarjeta;
-        if (agregarIngreso()== true){                               //se verifica si caben mas personas en el parque
+        if (agregarIngreso()){                               //se verifica si caben mas personas en el parque
             if(buscarCliente(c.getId()) != null){                   
                                                                     
                 if(buscarTarjeta(c.getId()) != null){               //Si tiene tarjeta y existe el cliente se deja entrar
@@ -189,7 +189,7 @@ public class Registro {
     }
  
     public boolean cargarTarjeta(Tarjeta tarjeta, float saldo){     //Para agregar saldo a una tarjeta se verifica qeu este activa
-        if(tarjeta.getActiva() == true){
+        if(tarjeta.getActiva()){
             tarjeta.agregarSaldo(saldo); 
             return true;
         }
