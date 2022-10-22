@@ -11,22 +11,50 @@ public class Tarjeta implements Serializable {
 	private final String[] tipoTarjeta = {"Adulto", "Infante"};
 	private final float[] costoTarjeta = {100, 50};
 	/*Atributos*/
-	//private Reserva reserva;
-	private int idTarjeta;
+	//private Reserva reserva;//
+	protected int idTarjeta;
 	//private int fecha;
-	private float costo;
+        private float costo;
 	private int tipoT;
 	private boolean tarjetaFisica;
 	private boolean activa = false; //Por defecto la tarjeta no esta activa hasta que se realice el pago de la misma
-
+        private int cantidadDeEntradas = 0;
+        private float saldo = 0;
+        
 	public Tarjeta() {}
-	public Tarjeta(int idTarjeta, float costo, int tipoTarjeta) {
+	public Tarjeta(int idTarjeta, int tipoTarjeta) {
 		//this.reserva = reserva;
 		this.idTarjeta = idTarjeta;
 		//this.fecha = fecha;
-		this.costo = costo;
 		this.tipoT = tipoTarjeta;
-	}
+                if(tipoTarjeta == 1){
+                this.costo =100;
+                }
+                else{
+                this.costo =50;
+                }
+                
+                
+        }      
+                
+        public void agregarEntrada(){
+            cantidadDeEntradas ++;
+            
+            if (cantidadDeEntradas%3 == 0){
+                System.out.println("Aplica para descuento") ;
+            }
+            else{
+                int entradas =  cantidadDeEntradas%3;
+                System.out.println("Faltan" + entradas + "entradas para tener descuento");
+            }
+        }
+                
+        public boolean agregarSaldo(float saldo){
+            this.saldo += saldo;
+            return true;
+        }
+                               
+	
 	/*public Reserva getReserva() {
 		return reserva;
 	}
@@ -46,10 +74,10 @@ public class Tarjeta implements Serializable {
 		this.fecha = fecha;
 	}*/
 	public void asignarCosto() {
-		this.costo = costoTarjeta[tipoT];
+		this.saldo = costoTarjeta[tipoT];
 	}
-	public float getCosto() {
-		return costo;
+	public float getSaldo() {
+		return saldo;
 	}
 	public String getTipoTarjeta() {
 		return tipoTarjeta[tipoT];
@@ -68,4 +96,8 @@ public class Tarjeta implements Serializable {
 	}
 
 
+        
+        
+        //
+        
 }
