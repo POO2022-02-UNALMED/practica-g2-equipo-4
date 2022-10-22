@@ -7,6 +7,7 @@ public class Registro {
     protected static final int capacidadDiaActual = 1000;
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     protected static ArrayList<Cliente> reservas = new ArrayList<>();
+    protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
     public static boolean agregarIngreso(){                       //verifica que los clientes no superen la capacidad total del parque
         if(cantidadClientesDiaActial < capacidadDiaActual){       // AQUI SE DEBE RESTAR A LA CAPACIDAD DE CLIENTES LOS QUE YA RESERVARON .P
@@ -106,6 +107,64 @@ public class Registro {
     }
     public static boolean existeReserva(int id){
         if(buscarReserva(id) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    ////---------------------------------------- //P.
+    
+    public static Cliente buscarTarjeta(int id){
+        for(Cliente c: tarjetas){
+            if(c.reserva.tarjeta.idTarjeta == id){
+                return c;
+            }
+        }
+        
+        return null;
+    }
+    
+    public static boolean agregarTarjeta(Tarjeta t){
+        if(buscarTarjeta(t.idTarjeta) != null){              //si la tarjeta ya esta en la lista no se pone
+            
+            return false;
+        }
+        else {
+            Cliente cliente = buscarCliente(t.idTarjeta);   //si la tarjeta no esta en la lista, entonces se agrega al cliente en la lista de tarjetas
+            if(cliente != null){
+                tarjetas.add(cliente);
+                return true;
+            }
+            else{
+                return false;
+        
+            }   
+        }   
+    
+    }
+    
+    public boolean concretarVenta(int id){
+       Cliente cliente = buscarReserva(id); 
+       if (cliente != null){                                    //si el cliente existe en las reservas           
+           Registro.agregarTarjeta(cliente.reserva.tarjeta);    //se agrega la tarjeta
+           cliente.reserva.tarjeta.setActiva(true);             //se activa la tarjeta
+           clientes.add(cliente);                               // el cliente entra directamente porque ya tiene reservado
+           cantidadClientesDiaActial++;
+           return true;
+           
+       }
+       else{
+           return false;
+           
+       }
+        
+    }
+ 
+    public boolean cargarTarjeta(Tarjeta tarjeta, float saldo){     //Para agregar saldo a una tarjeta se verifica qeu este activa
+        if(tarjeta.getActiva() == true){
+            tarjeta.agregarSaldo(saldo); 
             return true;
         }
         else{
