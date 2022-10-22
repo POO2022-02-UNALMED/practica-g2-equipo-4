@@ -3,14 +3,14 @@ package gestorAplicacion.servicios;
 import java.util.ArrayList;
 
 public class Registro {
-    protected static int cantidadClientesDiaActual = 0;
+    protected static int cantidadClientesDiaActial = 0;
     protected static final int capacidadDiaActual = 1000;
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     protected static ArrayList<Cliente> reservas = new ArrayList<>();
     protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
     public static boolean agregarIngreso(){                       //verifica que los clientes no superen la capacidad total del parque
-        if(cantidadClientesDiaActual < capacidadDiaActual){       // AQUI SE DEBE RESTAR A LA CAPACIDAD DE CLIENTES LOS QUE YA RESERVARON .P
+        if(cantidadClientesDiaActial < capacidadDiaActual){       // AQUI SE DEBE RESTAR A LA CAPACIDAD DE CLIENTES LOS QUE YA RESERVARON .P
             cantidadClientesDiaActial++;
             return true;                                          //si los clientes actuales son menores a la capacidad actual. deja entrar
         }
