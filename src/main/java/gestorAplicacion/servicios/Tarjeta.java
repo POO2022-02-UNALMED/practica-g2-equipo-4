@@ -11,9 +11,7 @@ public class Tarjeta implements Serializable {
 	private final String[] tipoTarjeta = {"Adulto", "Infante"};
 	private final float[] costoTarjeta = {100, 50};
 	/*Atributos*/
-	//private Reserva reserva;//
 	protected int idTarjeta;
-	//private int fecha;
         private float costo;
 	private int tipoT;
 	private boolean tarjetaFisica;
@@ -55,24 +53,12 @@ public class Tarjeta implements Serializable {
         }
                                
 	
-	/*public Reserva getReserva() {
-		return reserva;
-	}
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}*/
 	public int getIdTarjeta() {
 		return idTarjeta;
 	}
 	public void setIdTarjeta(int idTarjeta) {
 		this.idTarjeta = idTarjeta;
 	}
-	/*public int getFecha() {
-		return fecha;
-	}
-	public void setFecha(int fecha) {
-		this.fecha = fecha;
-	}*/
 	public void asignarCosto() {
 		this.saldo = costoTarjeta[tipoT];
 	}
@@ -95,9 +81,12 @@ public class Tarjeta implements Serializable {
 		this.tarjetaFisica = tarjetaFisica;
 	}
 
+    @Override
+    public String toString() {
+        return "Tarjeta{" + "tipoTarjeta=" + tipoTarjeta + ", costoTarjeta=" + costoTarjeta + ", idTarjeta=" + idTarjeta + ", costo=" + costo + ", tipoT=" + tipoT + ", tarjetaFisica=" + tarjetaFisica + ", activa=" + activa + ", cantidadDeEntradas=" + cantidadDeEntradas + ", saldo=" + saldo + '}';
+    }
 
-        
-        
-        //
+
+     
         
 }

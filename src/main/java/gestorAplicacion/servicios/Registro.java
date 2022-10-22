@@ -7,9 +7,10 @@ public class Registro {
     protected static final int capacidadDiaActual = 1000;
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     protected static ArrayList<Cliente> reservas = new ArrayList<>();
+    protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
     public static boolean agregarIngreso(){
-        if(cantidadClientesDiaActual < capacidadDiaActual){
+        if(cantidadClientesDiaActual < capacidadDiaActual){             
             cantidadClientesDiaActual++;
             return true;
         }
@@ -42,6 +43,35 @@ public class Registro {
         }
 
     }
+    
+        /*
+    public static boolean agregarCliente(Cliente c){
+        Tarjeta tarjeta = c.reserva.tarjeta;
+        if (agregarIngreso()== true){                               //se verifica si caben mas personas en el parque
+            if(buscarCliente(c.getId()) != null){                   
+                                                                    
+                if(buscarTarjeta(c.getId()) != null){               //Si tiene tarjeta y existe el cliente se deja entrar
+                    clientes.add(c); 
+                    tarjeta.agregarEntrada();             //Se agrega una entrada en la tarjeta para futuros desceuntos
+                    tarjeta.setActiva(true);              //Se le activa la tarjeta
+                    return true;   
+                
+                }    
+                else{                                                // si no tiene tarjeta no lo deja entrar
+                    return false;
+                }
+            }
+            else{                                                   // si se excedio la cantidad maxima del parque se rechaza la entrada
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
+    }
+    */
+    
     public static boolean agregarReserva(Reserva c){
         if(buscarReserva(c.idReserva) != null){
 
@@ -84,4 +114,61 @@ public class Registro {
             return false;
         }
     }
+    
+    public static Cliente buscarTarjeta(int id){
+        for(Cliente c: tarjetas){
+            if(c.reserva.tarjeta.idTarjeta == id){
+                return c;
+            }
+        }
+        
+        return null;
+    }
+    
+    public static boolean agregarTarjeta(Tarjeta t){
+        if(buscarTarjeta(t.idTarjeta) != null){              //si la tarjeta ya esta en la lista no se pone
+            
+            return false;
+        }
+        else {
+            Cliente cliente = buscarCliente(t.idTarjeta);   //si la tarjeta no esta en la lista, entonces se agrega al cliente en la lista de tarjetas
+            if(cliente != null){
+                tarjetas.add(cliente);
+                return true;
+            }
+            else{
+                return false;
+        
+            }   
+        }   
+    
+    }
+    
+    public boolean concretarVenta(int id){
+       Cliente cliente = buscarReserva(id); 
+       if (cliente != null){                                    //si el cliente existe en las reservas se le pone estado = 1 (pagado)          
+           Registro.agregarTarjeta(cliente.reserva.tarjeta);    //se agrega la tarjeta
+           cliente.reserva.tarjeta.setActiva(true);             //se activa la tarjeta
+           clientes.add(cliente);                               // el cliente entra directamente porque ya tiene reservado
+           cantidadClientesDiaActual++;
+           return true;
+           
+       }
+       else{
+           return false;
+           
+       }
+        
+    }
+ 
+    public boolean cargarTarjeta(Tarjeta tarjeta, float saldo){     //Para agregar saldo a una tarjeta se verifica qeu este activa
+        if(tarjeta.getActiva() == true){
+            tarjeta.agregarSaldo(saldo); 
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
 }
