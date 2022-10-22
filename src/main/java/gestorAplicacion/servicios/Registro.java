@@ -33,6 +33,8 @@ public class Registro {
         }
         return null;
     }
+    
+    /*
     public static boolean agregarCliente(Cliente c){
         if(buscarCliente(c.getId()) != null){
             clientes.add(c);
@@ -43,8 +45,8 @@ public class Registro {
         }
 
     }
-    
-        /*
+    */
+        
     public static boolean agregarCliente(Cliente c){
         Tarjeta tarjeta = c.reserva.tarjeta;
         if (agregarIngreso()== true){                               //se verifica si caben mas personas en el parque
@@ -70,7 +72,8 @@ public class Registro {
         }
 
     }
-    */
+    
+    
     
     public static boolean agregarReserva(Reserva c){
         if(buscarReserva(c.idReserva) != null){
@@ -150,6 +153,7 @@ public class Registro {
            Registro.agregarTarjeta(cliente.reserva.tarjeta);    //se agrega la tarjeta
            cliente.reserva.tarjeta.setActiva(true);             //se activa la tarjeta
            clientes.add(cliente);                               // el cliente entra directamente porque ya tiene reservado
+           cliente.reserva.tarjeta.agregarEntrada();            // se le agrega la entrada entrada´para futuro descuento
            cantidadClientesDiaActual++;
            return true;
            

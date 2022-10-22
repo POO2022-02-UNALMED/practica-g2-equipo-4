@@ -18,6 +18,6 @@ public class Cliente implements Serializable {
 		this.id = nueva_id;
 	}
 	
-	}
+}
 
 
