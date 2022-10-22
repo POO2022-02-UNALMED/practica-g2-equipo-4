@@ -19,6 +19,7 @@ public class Reserva implements Serializable {
     protected int idReserva;
     private String fecha;
     private boolean activa= false;
+    protected Tarjeta tarjeta;
 
     public Reserva(){}
     public String generarReserva(String fecha){

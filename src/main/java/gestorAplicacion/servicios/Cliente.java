@@ -14,8 +14,8 @@ public class Cliente implements Serializable {
 		return this.id;
 	}
 	public void corregir_Datos(String nueva_tipoId, int nueva_id) {
-		this.tipoId = nueva_tipoId
-		this.id = nueva_id
+		this.tipoId = nueva_tipoId;
+		this.id = nueva_id;
 	}
 	
 	}
