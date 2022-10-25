@@ -11,7 +11,7 @@ public class Registro {
     }
     public static int cantidadClientesDiaActual = 0;
     protected static final int capacidadDiaActual = 1000;
-    protected static HashMap<String, Integer> calendario = new HashMap<>();
+    public static HashMap<String, Integer> calendario = new HashMap<>();
     public static HashMap<String, Instalacion> instalaciones = new HashMap<>();
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     public static ArrayList<Cliente> reservas = new ArrayList<>();

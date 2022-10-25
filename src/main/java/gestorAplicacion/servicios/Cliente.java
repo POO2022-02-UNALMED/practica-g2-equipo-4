@@ -10,7 +10,7 @@ public class Cliente implements Serializable {
 	protected int id;
         protected int edad;
         public Tarjeta tarjeta;
-	protected Reserva reserva;
+	public Reserva reserva;
 
     public Cliente(String tipoId, int id, int edad) {
         this.tipoId = tipoId;

@@ -10,7 +10,7 @@ public abstract class Instalacion implements Serializable{
     private int edadRestriccion;
     /*private int alturaRestriccion;*/
     private int costo;
-    final  int usosMantenimiento = 100;
+    final  int usosMantenimiento = 5000;
     private int usosAntes = 0 ;
 
     public boolean sumarUsoAntes() {
