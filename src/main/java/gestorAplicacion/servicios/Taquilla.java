@@ -259,8 +259,8 @@ public class Taquilla {
                         
                 }
             
-                
-                while( select != 5){
+            case 5:
+                while( select != 3){
                 System.out.println("\nSeleccione una opcion:"
                         + "\n1. Buscar Tarjeta"
                         + "\n2. Cargar saldo"
@@ -289,7 +289,23 @@ public class Taquilla {
                         Scanner ids = new Scanner(System.in);
                         int idtarjet = ids.nextInt(); 
                         
-                        Cliente cliente = buscarCliente(idtarjet);
+                        Cliente client = buscarCliente(idtarjet);
+                        
+                        if(buscarCliente(idtarjet) != null){
+                            if (client.tarjeta!= null){
+                                System.out.println("su saldo es: "+ client.tarjeta.getSaldo() + "\ndigite la cantidad que desea recargar a su tarjeta");
+                                Scanner sald = new Scanner(System.in);
+                                float saldo = sald.nextFloat();
+                                client.tarjeta.agregarSaldo(saldo);
+                                System.out.println("su saldo es: "+ client.tarjeta.getSaldo());
+                            }
+                            else{
+                                System.out.println("El cliente no tiene tarjeta");
+                            }
+                        }
+                        else{
+                            System.out.println("El cliente no existe");
+                        }
                 }
                 
                 }
