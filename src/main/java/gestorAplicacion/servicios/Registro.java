@@ -136,6 +136,7 @@ public class Registro {
                 cliente.reserva = c;
                 if(agregarReservaCalendario(c.getFecha())){     //se verifica si hay cupo para la fecha de la reserva
                     reservas.add(cliente);
+                    
                     return true;
                 }
                 else{

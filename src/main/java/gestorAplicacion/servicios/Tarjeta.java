@@ -35,7 +35,7 @@ public class Tarjeta implements Serializable {
                 this.cantidadDeEntradas=0;
             }
             else{ ;
-                System.out.println("Faltan "+ (3-cantidadDeEntradas) +" para tener descuento");
+                System.out.println("Faltan "+ (3-cantidadDeEntradas) +" entradas para tener descuento");
             }
         }
                 

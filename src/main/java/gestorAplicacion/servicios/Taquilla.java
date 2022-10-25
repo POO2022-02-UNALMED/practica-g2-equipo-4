@@ -29,7 +29,7 @@ public class Taquilla {
     //menu general
     while ( select != 0 ){
     
-        System.out.println("\nElija una opcion:"
+        System.out.println("\n---MENU----"
         + "\n1. Verificar disponibilidad del Parque"
         + "\n2. Agregar ingreso al parque"
         + "\n3. Buscar Cliente"
@@ -47,23 +47,63 @@ public class Taquilla {
                 System.out.println("El dia de hoy han ingresado "+ cantidadClientesDiaActual+" personas al parque "
                 + "sobran "+(1000-cantidadClientesDiaActual)+" cupos.");
                 break;
-            case 2:
+                
+            case 2:                                                                     //ingresa desde la taquilla sin reserva
+                
+                
+                
                 System.out.println("Ingrese la id del cliente");
                 Scanner id = new Scanner(System.in);
                 int idcliente = id.nextInt();
-               
                 
-                System.out.println(buscarCliente(idcliente));
-                
-                if (buscarCliente(idcliente)==null){
-                    System.out.println("No se encontró ningun cliente con esta id.");
-                }else{
-                    System.out.println(buscarCliente(idcliente));
-                }
+                if (buscarCliente(idcliente)==null){                                                    //si el cliente no existe se crea
                     
                 
+                    //Ingresa datos del cliente
+                    System.out.println("Ingrese el tipo de identificacion del cliente:");
+                    Scanner ident = new Scanner(System.in);
+                    String identificacion = ident.nextLine();
+                    System.out.println("Ingrese la edad del cliente:");
+                    Scanner edad1 = new Scanner(System.in);
+                    int edad = edad1.nextInt();
+                        
+                    Cliente cliente = new Cliente(identificacion, idcliente, edad);                   // se crea el cliente
+                    agregarCliente(cliente);                               
+                }      
+                Cliente ingresoc = buscarCliente(idcliente);
+                
+                if (ingresoc.tarjeta == null){                                          //se comprueba si tiene tarjeta. si no tiene se le crea        
+                        if(ingresoc.edad<=15){
+                            int n = 1;
+                            Tarjeta tarjeta = new Tarjeta(idcliente, 1);
+                            ingresoc.tarjeta=tarjeta;
+                        }
+                        else{
+                            int n = 0;
+                            Tarjeta tarjeta = new Tarjeta(idcliente, 0);
+                            ingresoc.tarjeta=tarjeta;
+                        }
+                    }           
+                if(Registro.agregarIngreso()==true){            //se comprueba que haya espacio en el parque, se le agrega la entrada y activa la tarjeta
+                    ingresoc.tarjeta.agregarEntrada();   
+                    ingresoc.tarjeta.setActiva(true);
+                    System.out.println("Su tarjeta es \n"+ingresoc.tarjeta+"\nTiene tarjeta fisica o desea imprimirla. 1.Ya tiene tarjeta fisica  2.Imprimirla");
+                        Scanner f = new Scanner(System.in);
+                        int tfisica = f.nextInt();
+                        if (tfisica==1){
+                            System.out.println("Bienvenido al parque, ya puede pasar");
+                            
+                        }else{
+                            System.out.println("Imprimiendo tarjeta.\n"
+                                    + "Bienvenido al parque, ya puede pasar");
+                        }            
+                }                                                               //si no hay espacio en el parque no se le deja pasar
+                else{
+                    System.out.println("El parque esta lleno. no puede pasar");
+                }
                 break;
-            case 3:
+                
+            case 3: //Buscar cliente
                 
                 System.out.println("Ingrese la id del cliente que desea buscar");
                 Scanner id1 = new Scanner(System.in);
@@ -92,33 +132,58 @@ public class Taquilla {
                 select = menureserv.nextInt();
                 
                 switch(select){
-                    case 1:
-                        //Ingresa datos del cliente
-                        System.out.println("Ingrese el tipo de identificacion del cliente:");
-                        Scanner ident = new Scanner(System.in);
-                        String identificacion = ident.nextLine();
+                    case 1:                                                                         //RESERVAR
                         System.out.println("Ingrese la id del cliente");
                         Scanner id2 = new Scanner(System.in);
                         int idcliente2 = id2.nextInt();
-                        System.out.println("Ingrese la edad del cliente:");
-                        Scanner edad1 = new Scanner(System.in);
-                        int edad = edad1.nextInt();
                         
-                        Cliente cliente = new Cliente(identificacion, idcliente2, edad);
-                        agregarCliente(cliente);
+                        if(Registro.existeCliente(idcliente2)==false){                  //comprobamos si existe el cliente. si no existe se cea
+                            System.out.println("Ingrese el tipo de identificacion del cliente:");
+                            Scanner ident = new Scanner(System.in);
+                            String identificacion = ident.nextLine();
+                            System.out.println("Ingrese la edad del cliente:");
+                            Scanner edad1 = new Scanner(System.in);
+                            int edad = edad1.nextInt();
 
-                        //reserva
-                        System.out.println("Ingrese la fecha de la resrva en formato dd-mm-aa");
-                        Scanner fecha = new Scanner(System.in);
-                        String fechar = fecha.nextLine();
+                            Cliente cliente = new Cliente(identificacion, idcliente2, edad);
+                            agregarCliente(cliente);
+                        }
+                        
+                        
+                        if(Registro.buscarReserva(idcliente2) != null ){
+                            System.out.println("Usted ya tiene una reserva.  1.Ver reserva   2.Remplazar reserva");
+                            Scanner reserv = new Scanner(System.in);
+                            int reserva = reserv.nextInt();
+                            
+                            if(reserva==1){
+                                System.out.println(buscarReserva(idcliente2));
+                            }
+                            else{
+                                System.out.println("Ingrese la fecha de la reserva en formato dd-mm-aa");
+                                Scanner fecha = new Scanner(System.in);
+                                String fechar = fecha.nextLine();
 
-                        //agregarReserva();
-                        Reserva reserva = new Reserva(fechar, idcliente2);
-                        agregarReserva(reserva);
-                        System.out.println("Su reserva es:\n"+ reserva);
+                                //agregarReserva();
+                                Reserva reserva1 = new Reserva(fechar, idcliente2);
+                                agregarReserva(reserva1);
+                                System.out.println("Su nueva reserva es:\n"+ reserva1);
+                            }
+                        }
+                        
+                        else{
+                            //reserva                                                                       //se crea la reserva del cliente
+                            System.out.println("Ingrese la fecha de la reserva en formato dd-mm-aa");
+                            Scanner fecha = new Scanner(System.in);
+                            String fechar = fecha.nextLine();
+
+                            //agregarReserva();
+                            Reserva reserva = new Reserva(fechar, idcliente2);
+                            agregarReserva(reserva);
+                            System.out.println("Su reserva es:\n"+ reserva);
+                        }
                         break;
                     
-                    case 2:
+                    case 2:                                                                     //BUSCAR RESERVA
                         System.out.println("Ingrese la identificacion del cliente");
                         Scanner ident1 = new Scanner(System.in);
                         int identificacion1 = ident1.nextInt();
@@ -131,7 +196,7 @@ public class Taquilla {
                         
                         break;
                         
-                    case 3:
+                    case 3:                                                                             //ELIMINAR RESERVA
                         System.out.println("Ingrese el id del cliente que desea eliminar la reserva");
                         Scanner x = new Scanner(System.in);
                         int ideliminar = x.nextInt();
@@ -144,7 +209,7 @@ public class Taquilla {
                         
                         break;
                     
-                    case 4:
+                    case 4:                                                                                 //VER TODAS LAS RESERVAS
                         int tamanio = reservas.size();
                             System.out.println("Las reservas que hay por el momento son: \n");
                         for (int i=0; i < tamanio; i++){
@@ -152,7 +217,7 @@ public class Taquilla {
                         }
                         break;
                      
-                    case 5:
+                    case 5:                                                                                   //CONCRETAR VENTA
                         System.out.println("Para concretar la venta debe pagar la reserva. Ingrese el id del cliente");
                         Scanner idpagar = new Scanner(System.in);
                         int idc = idpagar.nextInt();               
@@ -162,6 +227,7 @@ public class Taquilla {
                         if(c.getEdad()<=15){
                             int n = 1;
                             Tarjeta tarjeta = new Tarjeta(idc, 1);
+                            c.tarjeta = tarjeta;
                             concretarVenta(idc, tarjeta);
                             tarjeta.setActiva(true);
                             eliminarReserva(idc);
@@ -169,6 +235,7 @@ public class Taquilla {
                         else{
                             int n = 0;
                             Tarjeta tarjeta = new Tarjeta(idc, 0);
+                            c.tarjeta = tarjeta;
                             concretarVenta(idc, tarjeta);
                             tarjeta.setActiva(true);
                             eliminarReserva(idc);
@@ -180,6 +247,7 @@ public class Taquilla {
                         int tfisica = f.nextInt();
                         if (tfisica==1){
                             System.out.println("Bienvenido al parque, ya puede pasar");
+                            
                         }else{
                             System.out.println("Imprimiendo tarjeta.\n"
                                     + "Bienvenido al parque, ya puede pasar");
@@ -191,29 +259,43 @@ public class Taquilla {
                         
                 }
             
-            case 5:
-                /*
+                
                 while( select != 5){
                 System.out.println("\nSeleccione una opcion:"
-                        + "\n1. Buscar Tarjetas"
-                
-                        + "\n2. Cargar una tarjeta"
-                        + "\n3. Ir al menu principal");
+                        + "\n1. Buscar Tarjeta"
+                        + "\n2. Cargar saldo"
+                        + "\n3. Ir al menu principal\n");
                 
                 Scanner menureserv = new Scanner(System.in);
                 select = menureserv.nextInt();
-
-        
-                }*/
                 
+                switch(select){
+                    
+                    case 1: 
+                        System.out.println("ingrese el id del cliente");
+                        Scanner idtarj = new Scanner(System.in);
+                        int idc = idtarj.nextInt(); 
+                        
+                        Cliente cliente = buscarCliente(idc);
+                        if(cliente.tarjeta != null){
+                            System.out.println("Su tarjeta es \n"+ cliente.tarjeta);
+                        }
+                        else{
+                            System.out.println("No hemos encontrado ninguna tarjeta");
+                        }
+                        
+                    case 2:
+                        System.out.println("ingrese el id del cliente");
+                        Scanner ids = new Scanner(System.in);
+                        int idtarjet = ids.nextInt(); 
+                        
+                        Cliente cliente = buscarCliente(idtarjet);
+                }
                 
-                
-                
+                }
+         
+            }
         }
     }
-    
-    
-  
-    }
 }
-    
+

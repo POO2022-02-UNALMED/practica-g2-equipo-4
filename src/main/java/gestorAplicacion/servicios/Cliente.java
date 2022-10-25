@@ -9,7 +9,7 @@ public class Cliente implements Serializable {
 	protected String tipoId;
 	protected int id;
         protected int edad;
-        
+        protected Tarjeta tarjeta;
 	protected Reserva reserva;
 
     public Cliente(String tipoId, int id, int edad) {
