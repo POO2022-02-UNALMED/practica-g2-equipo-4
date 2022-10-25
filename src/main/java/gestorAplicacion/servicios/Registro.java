@@ -144,6 +144,7 @@ public class Registro {
         }
     }
     
+     /*
     public static Cliente buscarTarjeta(int id){
         for(Cliente c: tarjetas){
             if(c.reserva.tarjeta.idTarjeta == id){
@@ -153,7 +154,7 @@ public class Registro {
         
         return null;
     }
-    
+   
     public static boolean agregarTarjeta(Tarjeta t){
         if(buscarTarjeta(t.idTarjeta) != null){              //si la tarjeta ya esta en la lista no se pone
             
@@ -172,38 +173,29 @@ public class Registro {
         }   
     
     }
+    */
     
     public static boolean concretarVenta(int id, Tarjeta tarjeta){
         Cliente cliente = buscarReserva(id);
-        System.out.println(cliente);
+        
         if (cliente != null){    
             cliente.reserva.tarjeta = tarjeta;
-            agregarTarjeta(cliente.reserva.tarjeta);    //se agrega la tarjeta
-            System.out.println("este es el cliente"+cliente);
-            cliente.reserva.tarjeta.setActiva(true);             //se activa la tarjeta
-            cliente.reserva.setDesactiva();                      //se desactiva la reserva
-            eliminarReserva(id);                                 //se elimina la reserva
-            cliente.reserva.tarjeta.agregarEntrada();            // se le agrega la entrada entrada´para futuro descuento
+                                             
+            cliente.reserva.setDesactiva();                      //se desactiva la reserva       
+            cliente.reserva.tarjeta.agregarEntrada();            // se le agrega la entrada entrada´para futuro descuento           
             cantidadClientesDiaActual++;
             return true;
            
        }
-       //else{
-            return false;
-           
-       //}
         
-    }
-    
-    public static int verificarTarjeta(int id){
-        Cliente cliente = buscarReserva(id);
-        if (cliente.getEdad()<=15){
-            System.out.println("Niño");
-            return 1;
-        }else{
-            return 0;
+       else{
+            return false;          
         }
-    }
+        
+    }      
+    
+    
+ 
  
     public boolean cargarTarjeta(Tarjeta tarjeta, float saldo){     //Para agregar saldo a una tarjeta se verifica qeu este activa
         if(tarjeta.getActiva()){
@@ -217,4 +209,5 @@ public class Registro {
 
     
 }
+
     

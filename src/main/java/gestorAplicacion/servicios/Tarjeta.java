@@ -23,30 +23,19 @@ public class Tarjeta implements Serializable {
 	public Tarjeta(int idTarjeta, int tipoTarjeta) {
 		//this.reserva = reserva;
 		this.idTarjeta = idTarjeta;
-                this.tipoT = tipoTarjeta;
-                
-                /*
-		//this.fecha = fecha;
-		this.tipoT = tipoTarjeta;
-                if(tipoTarjeta == 1){
-                this.costo =100;
-                }
-                else{
-                this.costo =50;
-                }
-                */
+                this.tipoT = tipoTarjeta;      
                 
         }      
                 
         public void agregarEntrada(){
-            cantidadDeEntradas ++;
+            this.cantidadDeEntradas ++;
             
-            if (cantidadDeEntradas%3 == 0){
+            if (cantidadDeEntradas == 3){
                 System.out.println("Aplica para descuento") ;
+                this.cantidadDeEntradas=0;
             }
-            else{
-                int entradas =  cantidadDeEntradas%3;
-                System.out.println("Faltan" + entradas + "entradas para tener descuento");
+            else{ ;
+                System.out.println("Faltan "+ (3-cantidadDeEntradas) +" para tener descuento");
             }
         }
                 

@@ -14,7 +14,6 @@ import static gestorAplicacion.servicios.Registro.clientes;
 import static gestorAplicacion.servicios.Registro.concretarVenta;
 import static gestorAplicacion.servicios.Registro.eliminarReserva;
 import static gestorAplicacion.servicios.Registro.reservas;
-import static gestorAplicacion.servicios.Registro.verificarTarjeta;
 import java.util.Scanner;
 
 /**
@@ -46,7 +45,7 @@ public class Taquilla {
         switch(select){
             case 1:
                 System.out.println("El dia de hoy han ingresado "+ cantidadClientesDiaActual+" personas al parque "
-                + "sobran "+capacidadDiaActual+" cupos.");
+                + "sobran "+(1000-cantidadClientesDiaActual)+" cupos.");
                 break;
             case 2:
                 System.out.println("Ingrese la id del cliente");
@@ -86,7 +85,7 @@ public class Taquilla {
                         + "\n2. Buscar reserva"
                         + "\n3. Eliminar reserva"
                         + "\n4. Ver todas las reservas"
-                        + "\n5. Pagar Reserva"
+                        + "\n5. Concretar venta"
                         + "\n6. Ir al menú principal\n");
                 
                 Scanner menureserv = new Scanner(System.in);
@@ -107,7 +106,6 @@ public class Taquilla {
                         
                         Cliente cliente = new Cliente(identificacion, idcliente2, edad);
                         agregarCliente(cliente);
-                        System.out.println("los clientes son"+clientes);
 
                         //reserva
                         System.out.println("Ingrese la fecha de la resrva en formato dd-mm-aa");
@@ -117,9 +115,7 @@ public class Taquilla {
                         //agregarReserva();
                         Reserva reserva = new Reserva(fechar, idcliente2);
                         agregarReserva(reserva);
-                        System.out.println(reserva);
-                        System.out.println(reservas);
-                        System.out.println(clientes);
+                        System.out.println("Su reserva es:\n"+ reserva);
                         break;
                     
                     case 2:
@@ -130,7 +126,7 @@ public class Taquilla {
                         if (buscarReserva(identificacion1)==null){
                             System.out.println("Este cliente no tiene ninguna reserva");
                         }else{
-                            System.out.println(buscarReserva(identificacion1));
+                            System.out.println("Su reserva es:\n"+buscarReserva(identificacion1));
                         }
                         
                         break;
@@ -162,21 +158,32 @@ public class Taquilla {
                         int idc = idpagar.nextInt();               
                         
                         //Creamos tarjeta
-                        int tarjeta1 = verificarTarjeta(idc); //1 niño  0 adulto
+                        Cliente c = buscarCliente(idc);
+                        if(c.getEdad()<=15){
+                            int n = 1;
+                            Tarjeta tarjeta = new Tarjeta(idc, 1);
+                            concretarVenta(idc, tarjeta);
+                            tarjeta.setActiva(true);
+                            eliminarReserva(idc);
+                        }
+                        else{
+                            int n = 0;
+                            Tarjeta tarjeta = new Tarjeta(idc, 0);
+                            concretarVenta(idc, tarjeta);
+                            tarjeta.setActiva(true);
+                            eliminarReserva(idc);
+                            
+                        }
                         
-                        
-                        Tarjeta tarjeta = new Tarjeta(idc, tarjeta1);
-                        System.out.println("holi"+tarjeta);
-                        
-                        concretarVenta(idc, tarjeta);
-                        
-                       
-                         if(concretarVenta(idc, tarjeta) == true){
-                           System.out.println("Se concretó la venta");
-                         }else{
-                           System.out.println("Error al concretar la venta");
-                         }
-                       
+                        System.out.println("Tiene tarjeta fisica o desea imprimirla. 1.Ya tiene tarjeta fisica  2.Imprimirla");
+                        Scanner f = new Scanner(System.in);
+                        int tfisica = f.nextInt();
+                        if (tfisica==1){
+                            System.out.println("Bienvenido al parque, ya puede pasar");
+                        }else{
+                            System.out.println("Imprimiendo tarjeta.\n"
+                                    + "Bienvenido al parque, ya puede pasar");
+                        }
                         
                     }
                     
