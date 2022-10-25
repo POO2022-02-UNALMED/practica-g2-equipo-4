@@ -20,10 +20,6 @@ import static gestorAplicacion.servicios.Registro.reservas;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-/**
- *
- * @author paula
- */
 public class Taquilla {
     
     /*public void inicioDia(String fecha){
