@@ -1,5 +1,7 @@
 package gestorAplicacion.servicios;
 
+import gestorAplicacion.instalaciones.Instalacion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,11 +10,15 @@ public class Registro {
     protected static int cantidadClientesDiaActual = 0;
     protected static final int capacidadDiaActual = 1000;
     protected static HashMap<String, Integer> calendario = new HashMap<>();
+    protected static HashMap<String, Instalacion> intalaciones = new HashMap<>();
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
     protected static ArrayList<Cliente> reservas = new ArrayList<>();
     protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
     /*El formato de fecha que vamos a utilizar es dd-mm-aaaa*/
+    public static void agregarInstalacion(Instalacion instalacion) {
+        intalaciones.put(instalacion.getNombre(), instalacion);
+    }
     public static void inicioCalendrio(String fechaInicio){
         String key;
         int dia = Integer.parseInt(fechaInicio.split("-")[0])+1;

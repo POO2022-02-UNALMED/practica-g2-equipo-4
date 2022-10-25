@@ -2,15 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gestorAplicacion.servicios;
+package uiMain;
+
+import gestorAplicacion.servicios.Cliente;
+import gestorAplicacion.servicios.Registro;
+import gestorAplicacion.servicios.Reserva;
+import gestorAplicacion.servicios.Tarjeta;
 
 import static gestorAplicacion.servicios.Registro.agregarCliente;
 import static gestorAplicacion.servicios.Registro.agregarReserva;
 import static gestorAplicacion.servicios.Registro.buscarCliente;
 import static gestorAplicacion.servicios.Registro.buscarReserva;
 import static gestorAplicacion.servicios.Registro.cantidadClientesDiaActual;
-import static gestorAplicacion.servicios.Registro.capacidadDiaActual;
-import static gestorAplicacion.servicios.Registro.clientes;
 import static gestorAplicacion.servicios.Registro.concretarVenta;
 import static gestorAplicacion.servicios.Registro.eliminarReserva;
 import static gestorAplicacion.servicios.Registro.reservas;
@@ -273,7 +276,8 @@ public class Taquilla {
                 System.out.println("\nSeleccione una opcion:"
                         + "\n1. Buscar Tarjeta"
                         + "\n2. Cargar saldo"
-                        + "\n3. Ir al menu principal\n");
+                        + "\n3. Ingresar a atraccion\n"
+                        + "\n4. Ir al menu principal\n");
                 
                 Scanner menureserv = new Scanner(System.in);
                 select = menureserv.nextInt();
