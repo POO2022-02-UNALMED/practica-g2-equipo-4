@@ -22,7 +22,7 @@ public class Reserva implements Serializable {
     protected Tarjeta tarjeta;
 
     public Reserva(String fecha, int idReserva){
-        this.idReserva = idReserva;
+        this.idReserva = idReserva; //cliente? 
         this.fecha = fecha;
         this.activa = true;
         //boolean r = Registro.agregarReserva(this);
@@ -143,7 +143,7 @@ public class Reserva implements Serializable {
         public int consultarEstado() {
         	return this.estado;
         }*/
-
+//
     @Override
     public String toString() {
         return "Reserva{" + "idReserva=" + idReserva + ", fecha=" + fecha + ", activa=" + activa + ", tarjeta=" + tarjeta + '}';
