@@ -33,6 +33,32 @@ public class Registro {
         }
 
     }
+    public static boolean agregarReservaCalendario(String fecha){
+        if(calendario.containsKey(fecha)) {
+            if (calendario.get(fecha) < capacidadDiaActual) {
+                calendario.put(fecha, calendario.get(fecha) + 1);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    public static boolean eliminarReservaCalendario(String fecha){
+        if(calendario.containsKey(fecha)) {
+            if (calendario.get(fecha) < capacidadDiaActual) {
+                calendario.put(fecha, calendario.get(fecha) - 1);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
     public static boolean agregarIngreso(){
         if(cantidadClientesDiaActual < capacidadDiaActual){             
             cantidadClientesDiaActual++;
@@ -108,11 +134,15 @@ public class Registro {
             Cliente cliente = buscarCliente(c.idReserva);
             if(cliente != null){                     
                 cliente.reserva = c;
-                reservas.add(cliente);
-                return true;
+                if(agregarReservaCalendario(c.getFecha())){     //se verifica si hay cupo para la fecha de la reserva
+                    reservas.add(cliente);
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
             else{
-                System.out.println("entro aqui");
                 return false;
             }
         }
@@ -121,9 +151,32 @@ public class Registro {
     public static boolean eliminarReserva(int id){
         Cliente cliente = buscarReserva(id);
         if(cliente != null){
-            cliente.reserva = null;
-            reservas.remove(cliente);
-            return true;
+            if(eliminarReservaCalendario(cliente.reserva.getFecha())){
+                cliente.reserva = null;
+                reservas.remove(cliente);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
+    }
+    public static boolean modificarReserva(int id, String fecha){
+        Cliente cliente = buscarReserva(id);
+        if(cliente != null){
+            if(eliminarReservaCalendario(fecha)){
+                cliente.reserva.setFecha(fecha);
+                if(agregarReservaCalendario(fecha)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
         }
         return false;
     }
