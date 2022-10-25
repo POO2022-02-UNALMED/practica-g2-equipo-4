@@ -1,6 +1,9 @@
 package gestorAplicacion.servicios;
 
+import gestorAplicacion.instalaciones.Instalacion;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Tarjeta implements Serializable {
 	/*La clase tarjeta solo maneja temas de informacion que
@@ -8,6 +11,7 @@ public class Tarjeta implements Serializable {
 	
 	//private static final long serialVersionUID = 1L;
 	/*Constantes*/
+	private int atraccionesMontadas = 0;
 	private final String[] tipoTarjeta = {"Adulto", "Infante"};
 	private final float[] costoTarjeta = {100, 50};
 	/*Atributos*/
@@ -18,14 +22,24 @@ public class Tarjeta implements Serializable {
 	private boolean activa = false; //Por defecto la tarjeta no esta activa hasta que se realice el pago de la misma
         private int cantidadDeEntradas = 0;
         private float saldo = 0;
-        
-	public Tarjeta() {}
+
+		public Tarjeta() {}
 	public Tarjeta(int idTarjeta, int tipoTarjeta) {
 		//this.reserva = reserva;
 		this.idTarjeta = idTarjeta;
                 this.tipoT = tipoTarjeta;      
                 
-        }      
+        }
+
+	public boolean cargarTarjeta(Tarjeta tarjeta, float saldo){     //Para agregar saldo a una tarjeta se verifica qeu este activa
+		if(tarjeta.getActiva()){
+			tarjeta.agregarSaldo(saldo);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
                 
         public void agregarEntrada(){
             this.cantidadDeEntradas ++;
@@ -38,10 +52,12 @@ public class Tarjeta implements Serializable {
                 System.out.println("Faltan "+ (3-cantidadDeEntradas) +" entradas para tener descuento");
             }
         }
+		public void setSaldo(float saldo) {
+			this.saldo = saldo;
+		}
                 
-        public boolean agregarSaldo(float saldo){
+        public void agregarSaldo(float saldo){
             this.saldo += saldo;
-            return true;
         }
                                
 	
@@ -77,6 +93,12 @@ public class Tarjeta implements Serializable {
     public String toString() {
         return "Tarjeta{" + "tipoTarjeta=" + tipoTarjeta[tipoT] + ", costoTarjeta=" + costoTarjeta[tipoT] + ", idTarjeta=" + idTarjeta + ", costo=" + costo +", tarjetaFisica= " + tarjetaFisica + ", activa= " + activa + ", cantidadDeEntradas= " + cantidadDeEntradas + ", saldo= " + saldo + '}';
     }
+	public void sumarAtracciones() {
+		this.atraccionesMontadas++;
+	}
+	public int getAtracciones() {
+		return this.atraccionesMontadas;
+	}
 
 
      

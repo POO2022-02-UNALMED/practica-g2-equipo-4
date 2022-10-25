@@ -9,6 +9,23 @@ public abstract class Instalacion implements Serializable{
     private String nombre;
     private int edadRestriccion;
     private int alturaRestriccion;
+    private int costo;
+    final  int usosMantenimiento = 100;
+    private int usosAntes = 0 ;
+
+    public boolean sumarUsoAntes() {
+        if (usosMantenimiento< usosAntes) {
+            this.usosAntes ++;
+            return true;
+        }
+        return false;
+    }
+    public void setCosto(int costo){
+        this.costo = costo;
+    }
+    public int getCosto(){
+        return costo;
+    }
     
     public Instalacion(String nombre, int edadRestriccion, int alturaRestriccion){
         this.nombre = nombre;

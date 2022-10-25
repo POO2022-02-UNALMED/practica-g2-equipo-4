@@ -13,7 +13,7 @@ import gestorAplicacion.servicios.*;
 public class Serializador {
     private static File rutaTemp = new File("src\\main\\java\\baseDatos\\temp");
     
-    public static void serializar(){
+/*    public static void serializar(){
         FileOutputStream fos;
         ObjectOutputStream oos;
         File[] docs = rutaTemp.listFiles();
@@ -67,5 +67,5 @@ public class Serializador {
             }
         }
         
-    }
+    }*/
 }

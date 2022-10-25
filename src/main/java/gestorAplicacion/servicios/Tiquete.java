@@ -1,65 +1,58 @@
 
 package gestorAplicacion.servicios;
 
+import gestorAplicacion.instalaciones.Instalacion;
+
 import java.io.Serializable;
 
 
-public class Tiquete extends Reserva implements Serializable {
-/*
-    private static final long serialVersionUID = 1L;
-    
-    private boolean incluyeCajitaInfantil;
-    private boolean incluyeCombo;
-    private int idTiquete;
-    private int fecha;
-    private final float costo = 100;
+public class Tiquete  {
+    private Instalacion instalacion;
+    private float costo;
+    private int id;
 
-    public Tiquete(boolean incluyeCajitaInfantil, boolean incluyeCombo, int idTiquete, int fecha, int idReserva, Cliente cliente, String tipoTiquete) {
-        super(idReserva, cliente, tipoTiquete);
-        this.incluyeCajitaInfantil = incluyeCajitaInfantil;
-        this.incluyeCombo = incluyeCombo;
-        this.idTiquete = idTiquete;
-        this.fecha = fecha;
+    public Tiquete(Instalacion instalacion){
+        this.instalacion = instalacion;
+        this.costo = instalacion.getCosto();
     }
 
-    public void setCliente(Cliente cliente){
-        Reserva.modificar_cliente(cliente);
+    public void setInstalacion(Instalacion instalacion){
+        this.instalacion = instalacion;
     }
-    
-    //getters setters
-    
-    public boolean isIncluyeCajitaInfantil() {
-        return incluyeCajitaInfantil;
+    public Instalacion getInstalacion(){
+        return instalacion;
     }
-
-    public void setIncluyeCajitaInfantil(boolean incluyeCajitaInfantil) {
-        this.incluyeCajitaInfantil = incluyeCajitaInfantil;
+    public void setCosto(float costo){
+        this.costo = costo;
     }
-
-    public boolean isIncluyeCombo() {
-        return incluyeCombo;
+    public float getCosto(){
+        return costo;
     }
-
-    public void setIncluyeCombo(boolean incluyeCombo) {
-        this.incluyeCombo = incluyeCombo;
+    public void setId(int id){
+        this.id = id;
     }
-
-    public int getIdTiquete() {
-        return idTiquete;
+    public int getId(){
+        return id;
     }
-
-    public void setIdTiquete(int idTiquete) {
-        this.idTiquete = idTiquete;
+    public boolean comprarTiquete(Tarjeta tj){
+        float precio;
+        if(tj.getAtracciones()>=5){
+             precio = costo*0.8f;
+        }
+        else{
+             precio = costo;
+        }
+        if(Registro.buscarCliente(tj.idTarjeta).edad >= instalacion.getEdadRestriccion()){
+            if(tj.getSaldo() >= precio){
+                if(instalacion.sumarUsoAntes()){
+                    tj.setSaldo(tj.getSaldo() - precio);
+                    tj.sumarAtracciones();
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
-
-    public int getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
-    }
-    */
-    
 }
 

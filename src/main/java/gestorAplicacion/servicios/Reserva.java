@@ -39,6 +39,10 @@ public class Reserva implements Serializable {
     
     
     }
+
+    public static void setReservas(ArrayList<Reserva> readObject) {
+    }
+
     /*
     public String generarReserva(String fecha){
         this.fecha = fecha;

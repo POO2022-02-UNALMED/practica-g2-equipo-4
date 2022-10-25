@@ -22,13 +22,22 @@ import java.util.Scanner;
  */
 public class Taquilla {
     
+    public void inicioDia(String fecha){
+        Registro.inicioCalendrio(fecha);
+    }
     public static void main(String args[]) {
     
     int select = -1;
     
     //menu general
     while ( select != 0 ){
-    
+        Scanner sc = new Scanner(System.in);
+        Taquilla obj = new Taquilla();
+        System.out.println("Bienvenido a la taquilla");
+        System.out.println("Ingrese la fecha actual en el formato dd-mm-aaaa");
+        String fecha = sc.nextLine();
+        obj.inicioDia(fecha);
+
         System.out.println("\n---MENU----"
         + "\n1. Verificar disponibilidad del Parque"
         + "\n2. Agregar ingreso al parque"
@@ -37,7 +46,7 @@ public class Taquilla {
         + "\n5. Tarjeta"
         + "\n0. Salir\n");
         
-        Scanner sc = new Scanner(System.in);
+
         select = sc.nextInt();
         
         //seleccion del menu
@@ -160,8 +169,8 @@ public class Taquilla {
                             }
                             else{
                                 System.out.println("Ingrese la fecha de la reserva en formato dd-mm-aa");
-                                Scanner fecha = new Scanner(System.in);
-                                String fechar = fecha.nextLine();
+                                Scanner fech = new Scanner(System.in);
+                                String fechar = fech.nextLine();
 
                                 //agregarReserva();
                                 Reserva reserva1 = new Reserva(fechar, idcliente2);
@@ -173,8 +182,8 @@ public class Taquilla {
                         else{
                             //reserva                                                                       //se crea la reserva del cliente
                             System.out.println("Ingrese la fecha de la reserva en formato dd-mm-aa");
-                            Scanner fecha = new Scanner(System.in);
-                            String fechar = fecha.nextLine();
+                            Scanner fec = new Scanner(System.in);
+                            String fechar = fec.nextLine();
 
                             //agregarReserva();
                             Reserva reserva = new Reserva(fechar, idcliente2);
@@ -259,8 +268,8 @@ public class Taquilla {
                         
                 }
             
-            case 5:
-                while( select != 3){
+                
+                while( select != 5){
                 System.out.println("\nSeleccione una opcion:"
                         + "\n1. Buscar Tarjeta"
                         + "\n2. Cargar saldo"
@@ -287,25 +296,9 @@ public class Taquilla {
                     case 2:
                         System.out.println("ingrese el id del cliente");
                         Scanner ids = new Scanner(System.in);
-                        int idtarjet = ids.nextInt(); 
-                        
-                        Cliente client = buscarCliente(idtarjet);
-                        
-                        if(buscarCliente(idtarjet) != null){
-                            if (client.tarjeta!= null){
-                                System.out.println("su saldo es: "+ client.tarjeta.getSaldo() + "\ndigite la cantidad que desea recargar a su tarjeta");
-                                Scanner sald = new Scanner(System.in);
-                                float saldo = sald.nextFloat();
-                                client.tarjeta.agregarSaldo(saldo);
-                                System.out.println("su saldo es: "+ client.tarjeta.getSaldo());
-                            }
-                            else{
-                                System.out.println("El cliente no tiene tarjeta");
-                            }
-                        }
-                        else{
-                            System.out.println("El cliente no existe");
-                        }
+                        int idtarjet = ids.nextInt();
+
+                        cliente = buscarCliente(idtarjet);
                 }
                 
                 }
