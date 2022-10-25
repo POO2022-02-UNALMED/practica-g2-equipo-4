@@ -8,33 +8,39 @@ public class Cliente implements Serializable {
 	
 	protected String tipoId;
 	protected int id;
+        protected int edad;
         
 	protected Reserva reserva;
 
-    public Cliente(String tipoId, int id) {
+    public Cliente(String tipoId, int id, int edad) {
         this.tipoId = tipoId;
         this.id = id;
+        this.edad = edad;
     }
         
-        
+        public int getEdad() {
+            return this.edad;
+        }
         
 	public int getId() {
-		return this.id;
+            return this.id;
 	}
         
         public String getTipoId() {
-		return this.tipoId;
+            return this.tipoId;
 	}
         
 	public void corregir_Datos(String nueva_tipoId, int nueva_id) {
-		this.tipoId = nueva_tipoId;
-		this.id = nueva_id;
+            this.tipoId = nueva_tipoId;
+            this.id = nueva_id;
 	}
 
     @Override
     public String toString() {
-        return "Cliente{" + "tipoId=" + tipoId + ", id=" + id + ", reserva=" + reserva + '}';
+        return "Cliente{" + "tipoId=" + tipoId + ", id=" + id + ", edad=" + edad + ", reserva=" + reserva + '}';
     }
+
+    
         
     
 	
