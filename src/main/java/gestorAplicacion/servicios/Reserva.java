@@ -7,11 +7,6 @@ package gestorAplicacion.servicios;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-// no se. L
-/**
- *
- * @author USUARIO
- */
 
 
 public class Reserva implements Serializable {
