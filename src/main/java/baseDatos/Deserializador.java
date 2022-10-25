@@ -1,65 +1,70 @@
 package baseDatos;
 
+import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import gestorAplicacion.instalaciones.*;
 import gestorAplicacion.servicios.*;
 
 public class Deserializador {
-    private static File rutaTemp = new File("src\\main\\java\\baseDatos\\temp");
+    /**
+     * Utilizamos clases genericas para permitir reutilizar la funcion para todas
+     * las clases del proyecto
+     *
+     * @param <E>       el generico se usa para poder agredar las clases que se
+     *                  crearon
+     * @param list      Una lista de objetos
+     * @param className El nombre de la clase que queremos usar como nombre del
+     *                  archivo
+     */
+    public static <E> void deserializador(List<E> list, String className) {
+        FileInputStream fileIn;
+        try {
+            // Creamos una cadena con la ruta del archivo que vamos a cargar
+            String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
+            System.out.println(path);
+            // utilizamos un file para crear este archivo si no existe aun
+            File archivo = new File(path);
+            archivo.createNewFile(); // Crea un nuevo archivo si no existe
 
-    public static void deserializar(){
-        File[] docs = rutaTemp.listFiles();
-        FileInputStream fis;
-        ObjectInputStream ois;
-        
-        for(File file: docs){
-            if(file.getAbsolutePath().contains("instalacionesAdultos")){
-                try{
-                    fis = new FileInputStream(file);
-                    ois = new ObjectInputStream(fis);
-                    InstalacionAdultos.setInstalacionesAdultos((ArrayList<Instalacion>) ois.readObject());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }catch(ClassNotFoundException e){
-                    e.printStackTrace();
-                }
-                
-            }else if(file.getAbsolutePath().contains("instalacionesMenores")){
-                try{
-                    fis = new FileInputStream(file);
-                    ois = new ObjectInputStream(fis);
-                    InstalacionMenores.setInstalacionesMenores((ArrayList<Instalacion>) ois.readObject());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }catch(ClassNotFoundException e){
-                    e.printStackTrace();
-                }
+            // usamos un FileInputStream para poder saber de donde cargar el archivo
+            fileIn = new FileInputStream(path);
+
+            // Si el archivo esta vacio se lanza un throw EOFException y se muestra como un
+            // mensaje de vacio, pero si no se usa el objeto in para leer el archivo
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            // Lee el listado de elementos
+            ArrayList<E> listado = (ArrayList<E>) in.readObject();
+
+            // Recorro el ArrayList
+            for (E el : listado) {
+                list.add(el);
             }
-            
-            
-            else if(file.getAbsolutePath().contains("reservas")){
-                try{
-                    fis = new FileInputStream(file);
-                    ois = new ObjectInputStream(fis);
-                    Reserva.setReservas((ArrayList<Reserva>) ois.readObject());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }catch(ClassNotFoundException e){
-                    e.printStackTrace();
-                }
-            }
+
+            in.close();
+            fileIn.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Esta vacio");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+    }
+
+
+    public static void deserializarTodo() {
+        Deserializador.deserializador(Registro.getRegistros(), "Registro");
     }
 }

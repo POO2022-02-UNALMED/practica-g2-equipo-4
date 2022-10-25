@@ -2,12 +2,13 @@ package gestorAplicacion.servicios;
 
 import gestorAplicacion.instalaciones.Instalacion;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Registro {
+    static List<Registro> registros;
+    static {
+        registros = new ArrayList<>();
+    }
     public static int cantidadClientesDiaActual = 0;
     protected static final int capacidadDiaActual = 1000;
     protected static HashMap<String, Integer> calendario = new HashMap<>();
@@ -234,11 +235,11 @@ public class Registro {
     
     }
     
-    public static boolean concretarVenta(int id, Tarjeta tarjeta){
+    public static boolean concretarVenta(int id){
         Cliente cliente = buscarReserva(id);
         System.out.println(cliente);
         if (cliente != null){    
-            cliente.reserva.tarjeta = tarjeta;
+            //cliente.reserva.tarjeta = tarjeta;
             agregarTarjeta(cliente.reserva.tarjeta);    //se agrega la tarjeta
             System.out.println("este es el cliente"+cliente);
             cliente.reserva.tarjeta.setActiva(true);             //se activa la tarjeta
@@ -275,7 +276,7 @@ public class Registro {
             return false;
         }
     }
-    public String mostrarInstalaciones(){
+    public static String mostrarInstalaciones(){
         String instalacion = "";
         Set<String> keys = instalaciones.keySet();
         for ( String key : keys ) {
@@ -283,7 +284,17 @@ public class Registro {
         }
         return instalacion;
     }
+    public static Instalacion buscarInstalacion(String nombre){
+        for(Instalacion i: instalaciones.values()){
+            if(i.getNombre().equals(nombre)){
+                return i;
+            }
+        }
+        return null;
+    }
 
-    
+    public static List<Registro> getRegistros() {
+        return registros;
+    }
 }
     

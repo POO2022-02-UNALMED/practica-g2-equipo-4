@@ -5,67 +5,45 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.util.List;
 
-import gestorAplicacion.instalaciones.*;
 import gestorAplicacion.servicios.*;
 
 public class Serializador {
-    private static File rutaTemp = new File("src\\main\\java\\baseDatos\\temp");
-    
-/*    public static void serializar(){
-        FileOutputStream fos;
-        ObjectOutputStream oos;
-        File[] docs = rutaTemp.listFiles();
-        PrintWriter pw;
-        
-        for (File file: docs){
-            try{
-                pw = new PrintWriter(file);
-            }catch(FileNotFoundException e){
-                e.printStackTrace();
-            }
+    /**
+     * Serializamos una lista por el nombre de la clase
+     *
+     * @param <E>       el generico se usa para poder agredar las clases que se
+     *                  crearon
+     * @param lista     Una lista de objetos
+     * @param className El nombre de la clase que queremos usar como nombre del
+     *                  archivo
+     */
+    public static <E> void serializar(List<E> lista, String className) {
+        FileOutputStream fileOut;
+
+        try {
+            String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
+            // se crea un fileoutputstream para saber donde serializar los archivos
+            fileOut = new FileOutputStream(path);
+            // Se crea un objeto output stream para poder escribir en el archivo
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            // Guardamos la lista de objetos
+            out.writeObject(lista);
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        
-        for (File file: docs){
-            if(file.getAbsolutePath().contains("instalacionesAdulto")){
-                try{
-                    fos = new FileOutputStream(file);
-                    oos = new ObjectOutputStream(fos);
-                    oos.writeObject(InstalacionAdultos.getInstalacionesAdultos());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-                
-                
-                
-                
-            }else if(file.getAbsolutePath().contains("instalacionesMenores")){
-                try{
-                    fos = new FileOutputStream(file);
-                    oos = new ObjectOutputStream(fos);
-                    oos.writeObject(InstalacionMenores.getInstalacionesMenores());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-            }
-            
-            else if(file.getAbsolutePath().contains("reservas")){
-                try{
-                    fos = new FileOutputStream(file);
-                    oos = new ObjectOutputStream(fos);
-                    oos.writeObject(Reserva.getReservas());
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-        
-    }*/
+    }
+
+    /**
+     * Serializamos todas las clases que necesitamos
+     */
+    public static void serializarTodo() {
+        Serializador.serializar(Registro.getRegistros(), "Registros");
+    }
 }

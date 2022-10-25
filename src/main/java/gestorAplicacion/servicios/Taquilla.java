@@ -26,7 +26,7 @@ import java.util.Scanner;
  */
 public class Taquilla {
     
-    public void inicioDia(String fecha){
+    /*public void inicioDia(String fecha){
         Registro.inicioCalendrio(fecha);
     }
     public static void main(String args[]) {
@@ -369,8 +369,8 @@ public class Taquilla {
                             Tarjeta tarjetax = clientex.tarjeta;
                             int edad = clientex.getEdad();
                                 System.out.println("Tenemos las siguientes instalaciones: \n");
-                                InstalacionMenores.getInstalacionMenores();
-                                InstalacionAdultos.getInstalacionAdultos();
+                                *//*InstalacionMenores.getInstalacionMenores();
+                                InstalacionAdultos.getInstalacionAdultos();*//*
                                 System.out.println("elija una: \n");
                                 
                                 
@@ -403,7 +403,7 @@ public class Taquilla {
                         }
                         
                             }
-                        }
+                        }*/
                         
                     }                 
                 
