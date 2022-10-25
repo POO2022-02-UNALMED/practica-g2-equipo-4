@@ -8,7 +8,7 @@ public abstract class Instalacion implements Serializable{
     
     private String nombre;
     private int edadRestriccion;
-    private int alturaRestriccion;
+    /*private int alturaRestriccion;*/
     private int costo;
     final  int usosMantenimiento = 100;
     private int usosAntes = 0 ;
@@ -27,15 +27,15 @@ public abstract class Instalacion implements Serializable{
         return costo;
     }
     
-    public Instalacion(String nombre, int edadRestriccion, int alturaRestriccion){
+    public Instalacion(String nombre, int edadRestriccion){
         this.nombre = nombre;
         this.edadRestriccion = edadRestriccion;
-        this.alturaRestriccion = alturaRestriccion;
+        /*this.alturaRestriccion = alturaRestriccion;*/
     }
     
-    public Instalacion(String nombre, int alturaRestriccion){
+    public Instalacion(String nombre){
         this.nombre = nombre;
-        this.alturaRestriccion = alturaRestriccion;
+        /*this.alturaRestriccion = alturaRestriccion;*/
     }
     
     public void setNombre(String nombre){
@@ -54,15 +54,15 @@ public abstract class Instalacion implements Serializable{
         return edadRestriccion;
     }
     
-    public void setAlturaRestriccion(int alturaRestriccion){
+/*    public void setAlturaRestriccion(int alturaRestriccion){
         this.alturaRestriccion = alturaRestriccion;
-    }
+    }*/
     
-    public int getAlturaRestriccion(){
+/*    public int getAlturaRestriccion(){
         return alturaRestriccion;
-    }
+    }*/
     
     public abstract String informacionInstalacion();
     public abstract String tipoInstalacion();
-    public abstract void montarCliente(Object cliente);
+    public abstract String agregarInstalacion();
 }

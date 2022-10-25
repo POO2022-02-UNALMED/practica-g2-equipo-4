@@ -85,7 +85,7 @@ public class Taquilla {
                 Cliente ingresoc = buscarCliente(idcliente);
                 
                 if (ingresoc.tarjeta == null){                                          //se comprueba si tiene tarjeta. si no tiene se le crea        
-                        if(ingresoc.edad<=15){
+                        if(ingresoc.getEdad() <=15){
                             int n = 1;
                             Tarjeta tarjeta = new Tarjeta(idcliente, 1);
                             ingresoc.tarjeta=tarjeta;

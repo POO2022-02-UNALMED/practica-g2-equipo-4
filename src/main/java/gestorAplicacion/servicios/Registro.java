@@ -5,19 +5,20 @@ import gestorAplicacion.instalaciones.Instalacion;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Registro {
-    protected static int cantidadClientesDiaActual = 0;
+    public static int cantidadClientesDiaActual = 0;
     protected static final int capacidadDiaActual = 1000;
     protected static HashMap<String, Integer> calendario = new HashMap<>();
-    protected static HashMap<String, Instalacion> intalaciones = new HashMap<>();
+    public static HashMap<String, Instalacion> instalaciones = new HashMap<>();
     protected static ArrayList<Cliente> clientes = new ArrayList<>();
-    protected static ArrayList<Cliente> reservas = new ArrayList<>();
+    public static ArrayList<Cliente> reservas = new ArrayList<>();
     protected static ArrayList<Cliente> tarjetas = new ArrayList<>();
 
     /*El formato de fecha que vamos a utilizar es dd-mm-aaaa*/
     public static void agregarInstalacion(Instalacion instalacion) {
-        intalaciones.put(instalacion.getNombre(), instalacion);
+        instalaciones.put(instalacion.getNombre(), instalacion);
     }
     public static void inicioCalendrio(String fechaInicio){
         String key;
@@ -273,6 +274,14 @@ public class Registro {
         else{
             return false;
         }
+    }
+    public String mostrarInstalaciones(){
+        String instalacion = "";
+        Set<String> keys = instalaciones.keySet();
+        for ( String key : keys ) {
+            instalacion += key + " " + instalaciones.get(key) + "\n";
+        }
+        return instalacion;
     }
 
     
