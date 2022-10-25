@@ -23,6 +23,9 @@ public class Tarjeta implements Serializable {
 	public Tarjeta(int idTarjeta, int tipoTarjeta) {
 		//this.reserva = reserva;
 		this.idTarjeta = idTarjeta;
+                this.tipoT = tipoTarjeta;
+                
+                /*
 		//this.fecha = fecha;
 		this.tipoT = tipoTarjeta;
                 if(tipoTarjeta == 1){
@@ -31,7 +34,7 @@ public class Tarjeta implements Serializable {
                 else{
                 this.costo =50;
                 }
-                
+                */
                 
         }      
                 

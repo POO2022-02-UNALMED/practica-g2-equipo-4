@@ -21,7 +21,25 @@ public class Reserva implements Serializable {
     private boolean activa= false;
     protected Tarjeta tarjeta;
 
-    public Reserva(){}
+    public Reserva(String fecha, int idReserva){
+        this.idReserva = idReserva;
+        this.fecha = fecha;
+        this.activa = true;
+        //boolean r = Registro.agregarReserva(this);
+        //boolean c = Registro.existeCliente(this.idReserva);
+        //if(r){
+            //return "Reserva exitosa";
+        //}
+        //else if(c){
+            //return "El cliente ya tiene una reserva";
+        //}
+        //else{
+            //return "El cliente no existe";
+        //}
+    
+    
+    }
+    /*
     public String generarReserva(String fecha){
         this.fecha = fecha;
         this.activa = true;
@@ -39,6 +57,7 @@ public class Reserva implements Serializable {
 
         }
     }
+    */
     public String cancelarReserva(){
         boolean r= Registro.existeReserva(this.idReserva);
         if(r){
@@ -76,6 +95,10 @@ public class Reserva implements Serializable {
     public boolean getActiva(){
         return activa;
     }
+    public void setDesactiva(){
+        activa = false;
+    }
+    
 	/*//no se. L
     //private static final long serialVersionUID = 1L;
     private static ArrayList<Reserva> reservas = new ArrayList<>();
@@ -124,4 +147,9 @@ public class Reserva implements Serializable {
         public int consultarEstado() {
         	return this.estado;
         }*/
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "idReserva=" + idReserva + ", fecha=" + fecha + ", activa=" + activa + ", tarjeta=" + tarjeta + '}';
+    }
 }
