@@ -1,4 +1,5 @@
-from registro import Registro
+
+
 class Cliente:
 
     def __init__(self, tipoId, id, edad):
@@ -7,6 +8,9 @@ class Cliente:
         self._edad = edad
         self._tarjeta = None
         self._reserva = None
+    
+    def getReserva(self):
+        return self._reserva
 
     def getEdad(self):
         return self._edad
@@ -22,8 +26,7 @@ class Cliente:
         self._id = nueva_id
 
     def __str__(self):
-
-        return 'id: '+(self.getId()) + 'edad: ' + (self.getEdad) 
+        return f"Id: {self.getId()}, Edad {self.getEdad()}, Tarjeta: {self._tarjeta}, Reserva: {self._reserva}"
 
     
 

@@ -1,4 +1,3 @@
-from registro import Registro
 
 class Reserva:
 
@@ -8,10 +7,13 @@ class Reserva:
         self._activa = True
         self._tarjeta = None
 
+    def getIdReserva(self):
+        return self._idReserva
+
     def setFecha(self, fecha):
         self._fecha = fecha
 
-    def getFecha(self, fecha):
+    def getFecha(self):
         return self._fecha
 
     def setActiva(self):
@@ -23,7 +25,10 @@ class Reserva:
     def setDesactiva(self):
         self._activa = False
     
+    def __str__(self):
+        return f"Id: {self.getIdReserva()}, Fecha: {self.getFecha()}"
 
+'''
     def cancelarReserva(self):
         r = Registro.existeReserva(self._idReserva)
         if r == True:
@@ -47,3 +52,4 @@ class Reserva:
         else:
             return "La reserva no existe"
             
+'''
