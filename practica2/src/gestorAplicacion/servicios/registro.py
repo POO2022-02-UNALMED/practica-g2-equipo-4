@@ -1,4 +1,4 @@
-import Cliente
+from cliente import Cliente
 
 class Registro:
     
