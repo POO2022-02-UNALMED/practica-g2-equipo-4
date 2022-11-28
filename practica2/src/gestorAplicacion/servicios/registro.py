@@ -69,6 +69,8 @@ class Registro():
     def eliminarReserva(self, r):
         x = True
         id = r.getIdReserva()
+        print(id)
+        print(len(self.reservas))
         for k in range(len(self.reservas)):
             if self.reservas[k].getIdReserva() == id:
                 self.reservas.pop(k)
@@ -83,9 +85,12 @@ class Registro():
         return False
     
     def agregarTarjeta(self, t):
-        id = t.getIdTarjeta()  
-        self.tarjetas.append(t)
-        return True
+        id = t.getIdTarjeta() 
+        if self.buscarTarjeta(id) == False:
+            self.tarjetas.append(t)
+            return True
+        else:
+            False
 
     def mostrarInstalaciones(self, tipo):
         k = 0
