@@ -2,15 +2,26 @@ from servicios.registro import Registro
 from servicios.cliente import Cliente
 from servicios.reserva import Reserva
 from servicios.tarjeta import Tarjeta
+from servicios.tiquete import Tiquete
+from instalaciones.instalacionMenores import InstalacionMenores
+from instalaciones.instalacionAdultos import InstalacionAdultos
+from instalaciones.instalacion import Instalacion
+from Deserializador import Deserializador
+from Serializador import Serializador
+
+
+import pickle
+
+
+
+fichero_binario = open("pcs.pkl", "wb")
 
 if __name__ == "__main__":
-
-
-    #Cliente1 = Cliente("cc", 12, 20)
-    #print(Cliente1)
     x = -8
     while (x == -8):
 
+        #Deserializador.deserializar()
+        #Creacion del registro
         Registro1 = Registro()
 
         print("\n Bienvenido a la taquilla\n************************************")
@@ -18,6 +29,8 @@ if __name__ == "__main__":
         print("2. Agregar ingreso")
         print("3. Clientes y reservas")
         print("4. Acceso a instalaciones")
+        print("6. Opciones avanzadas")
+        print("7. Salir")
         print("************************************")
 
         opcion = int(input("Seleccione una opcion: "))
@@ -32,6 +45,7 @@ if __name__ == "__main__":
                 y = Registro1.agregarIngreso()
                 t = Registro1.buscarTarjeta(id)
                 if t != False:                                                          #se comprueba si el cliente tiene tarjeta, si no se crea
+                    t.agregarEntrada()
                     tarjetas = int(input("tiene tarjeta fisica o desea imprimirla? \n1. Si tengo. \n2. Imprimir tarjeta. \n"))
                     if tarjetas == 1:
                         print("Bienvenido al parque. ya puede pasar.")
@@ -52,9 +66,10 @@ if __name__ == "__main__":
                         tarj.activarTarjeta()
                         Registro1.agregarTarjeta(tarj)
                     print("Imprimiendo tarjeta...")
-                    t.setTarjetaFisica()
+                    tarj.setTarjetaFisica()
                     print(tarj)
                     print("Bienvenido al parque. ya puede pasar.")
+                    tarj.agregarEntrada()
             else:                                                         #Cuando no esta en la lista de clientes
                 edad = int(input("Edad del cliente: "))
                 if edad>=18:
@@ -74,6 +89,7 @@ if __name__ == "__main__":
                     tarj.setTarjetaFisica()
                     print(tarj)
                     Registro1.agregarTarjeta(tarj)
+                    tarj.agregarEntrada()
                     print("Bienvenido al parque. Ya puede pasar")
 
                 else:
@@ -201,6 +217,7 @@ if __name__ == "__main__":
 
                             t = Registro1.buscarTarjeta(id)
                             if t != False:                                                          #se comprueba si el cliente tiene tarjeta, si no se crea
+                                t.agregarEntrada()
                                 tarjetas = int(input("tiene tarjeta fisica o desea imprimirla? \n1. Si tengo. \n2. Imprimir tarjeta. \n"))
                                 if tarjetas == 1:
                                     print("Bienvenido al parque. ya puede pasar.")
@@ -222,6 +239,7 @@ if __name__ == "__main__":
                                     Registro1.agregarTarjeta(tarj)
                                 print("Imprimiendo tarjeta...")
                                 tarj.setTarjetaFisica()
+                                tarj.agregarEntrada()
                                 print(tarj)
                                 print("Bienvenido al parque. ya puede pasar.")
             
@@ -229,14 +247,14 @@ if __name__ == "__main__":
                     select = 8
                     exit
         if opcion == 4:
-            selec = -2
-            while (selec != 3):
-                ops = int(input("\n"
+            opss = -2
+            while (opss != 3):
+                opss = int(input("\n"
                 + "\n1. Cargar saldo"
                 + "\n2. Comprar Tiquetes"
                 + "\n3. Ir al menú principal\n"
                 + "\nSeleccione una opcion:  "))
-                if ops == 1:
+                if opss == 1:
                     print("\n**Cargar saldo**")
                     id = int(input("id del cliente: "))
                     t = Registro1.buscarTarjeta(id)
@@ -244,12 +262,100 @@ if __name__ == "__main__":
                         if t.getTarjetaFisica !=False:
                             saldo = int(input(f"su saldo es {t}" + "\nCuanto desea cargar?  "))
                             t.cargarTarjeta(t, saldo)
-                            print(f"su tarjeta fue cargada con {saldo}")
+                            print(f"su tarjeta fue cargada con {saldo}\n")
+                            print("**Tarjeta**")
                             print(t)
                         else:
                             print("su tarjeta no esta activa")
                     else:
                         ("no se encontró esta tarjeta")
+                
+                if opss == 2:
+                    print("\n*Comprar tiquetes**")
+                    id = int(input("id del cliente: "))
+                    t = Registro1.buscarTarjeta(id)
+                    if t!= False  :
+                        if t.getTarjetaFisica !=False:
+                            print(t)
+                            tipo = t.getTipo()
+                            print("\nTenemos las siguientes instalaciones: \n")
+                            Registro1.mostrarInstalaciones(tipo)
+                            z = input("A cual desea entrar?: ")
+                            i = Registro1.buscarInstalacion(z)
+                            if i != False and tipo == i.getEdadRestriccion():
+                                costo = i.getCosto()
+                                if t.getSaldo() >= costo:
+                                    tiquet = Tiquete(i, id)
+                                    if tiquet.comprarTiquete(t) == True:
+                                        print(f"Su saldo es de {t.getSaldo()}")
+                                    else:
+                                        pass
+                                else:
+                                    print("No tiene suficiente saldo como para entrar a esta atraccion")
+                            else:
+                                print("No tenemos ninguna instalacion con este nombre")
+                        else:
+                            print("su tarjeta no esta activa")
+                    else:
+                        print("no se encontró esta tarjeta")
+                    
+
+        if opcion == 6:
+            selec = -2
+            while (selec != 4):
+                ops = int(input("\n"
+                + "\n1. Ver instalaciones"
+                + "\n2. Agregar instalaciones"
+                + "\n3. Hacer mantenimiento"
+                + "\n4. Ir al menú principal\n"
+                + "\nSeleccione una opcion:  "))
+            
+                if ops == 1:
+                    Registro1.mostrarInstalaciones("Todas")
+
+                if ops == 2:
+                    tipo = int(input("1. Niños \n2. Adultos \nLa instalacion es para: "))
+                    if tipo == 1:
+                        nombre = input("Ingrese el nombre de la instalacion: ")
+                        r = Registro1.buscarInstalacion(nombre)
+                        if r != False:
+                            print("ya hay una instalacion con este nombre")
+                        else:
+                            instalacion = InstalacionMenores(nombre)
+                            Registro1.agregarInstalacion(instalacion)
+                    
+                    if tipo == 2:
+                        nombre = input("Ingrese el nombre de la instalacion: ")
+                        r = Registro1.buscarInstalacion(nombre)
+                        if r != False:
+                            print("ya hay una instalacion con este nombre")
+                        else:
+                            instalacion = InstalacionAdultos(nombre)
+                            Registro1.agregarInstalacion(instalacion)
+                if ops == 3:
+                    instal = Instalacion.mostrarSolicitudes()
+                    if instal == False:
+                        print("Por el momento no hay ninguna instalacion que necesite mantenimiento")
+                    else:
+                        activar = input("Seleccione una:  ")
+                        instalacion = instalacion.instalacionesDeshuso(activar)
+                        if instalacion != False:
+                           instalacion.realizarMantenimiento()
+                        else:
+                            print("no se encontro una instalacion que requiera mantenimiento con este nombre")
+
+                if ops == 4:
+                    select = 4
+                    break
+
+        if opcion == 7:
+            x = 0
+            break
+    
+    Serializador.serializar()
+
+
+                        
 
 
 

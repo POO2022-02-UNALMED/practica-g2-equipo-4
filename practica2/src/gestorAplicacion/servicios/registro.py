@@ -4,14 +4,18 @@ class Registro():
     
     cantidadClientesDiaActual = 0
     capacidadDiaActual = 1000
+
+    """Cosas para guardar en el serializador"""
     clientes = []
     reservas = []
     tarjetas = []
+    instalaciones = []
     
     def __init__(self):
         self._clientes = []
         self._reservas = []
         self._tarjetas = []
+        self._instalaciones = []
 
     @classmethod
     def agregarIngreso(cls):
@@ -46,7 +50,6 @@ class Registro():
             return False
         else:
             self.clientes.append(c)
-            print("Cliente registrado")
             return True
             
     def buscarReserva(self, id):
@@ -80,5 +83,42 @@ class Registro():
     def agregarTarjeta(self, t):
         id = t.getIdTarjeta()  
         self.tarjetas.append(t)
-        print("Tarjeta creada")
         return True
+
+    def mostrarInstalaciones(self, tipo):
+        k = 0
+        if tipo == "Adulto" or tipo == "Infante":
+            while k < len(self.instalaciones):
+                if self.instalaciones[k].getEdadRestriccion() == tipo:
+                    print("Instalacion: ",  self.instalaciones[k] )
+                    k += 1
+                else:
+                    k += 1
+                    pass
+        else:
+            while k < len(self.instalaciones):
+                print("Instalacion: ",  self.instalaciones[k])
+                k += 1
+
+    def buscarInstalacion(self, nombre):
+        for k in range(len(self.instalaciones)):
+            if self.instalaciones[k].getNombre() == nombre:
+                return self.instalaciones[k]
+        return False
+
+    def agregarInstalacion(self, i):
+        nombre = i.getNombre()
+        if self.buscarInstalacion(nombre) !=False:
+            print("Ya hay una instalacion con este nombre, elija otro")
+            return False
+        else:
+            self.instalaciones.append(i)
+            print("Instalacion registrada")
+            return True
+
+
+
+    """
+    1. Creacion y eliminacion de reservas
+    2. bono de descuento cada que etntra 3 veces al parque y cada que entra 5 veces a alguna atraccion
+    """

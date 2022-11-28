@@ -12,10 +12,14 @@ class Tarjeta:
         self._activa = False
         self._cantidadDeEntradas = 0
         self._saldo = 0
+        self._atraccionesMontadas = 0
 
 
     def __str__(self):
         return f"Id: {self.getIdTarjeta()}, Tipo: {self._tipoT}, Entradas: {self._cantidadDeEntradas}, Saldo: {self._saldo}, Estado: {self._activa}"
+
+    def getTipo(self):
+        return self._tipoT
 
     def getIdTarjeta(self):
         return self._idTarjeta
@@ -26,6 +30,9 @@ class Tarjeta:
     def getSaldo(self):
         return self._saldo
 
+    def setSaldo(self, saldo):
+        self._saldo = saldo
+
     def cargarTarjeta(self, tarjeta, saldo):
         tarjeta.agregarSaldo(saldo)
         return True
@@ -33,14 +40,25 @@ class Tarjeta:
     def agregarSaldo(self, saldo):
         self._saldo += saldo
 
+    
+    def sumarAtracciones(self):
+        self._atraccionesMontadas += 1
+        if self.getAtracciones() ==6 :              #Si ha montado en 5 atracciones vuelve a empezar para el descuento
+            self._atraccionesMontadas = 0
+
+    def getAtracciones(self):
+        return self._atraccionesMontadas
+        
+
+
     def agregarEntrada(self):
         self._cantidadDeEntradas +=1
-
         if self._cantidadDeEntradas == 3:
             self._cantidadDeEntradas=0
-            return print ("Aplica para descuento")
+            print ("\n**Aplica para descuento**\n")
+            return True
         else:
-            return print("Faltan "+ (3-self._cantidadDeEntradas) +" entradas para tener descuento")
+            return print("Faltan ",  3-self._cantidadDeEntradas ," visitas al parque para tener descuento")
 
     def setTarjetaFisica(self):
         self._tarjetaFisica = True
@@ -50,5 +68,3 @@ class Tarjeta:
 
     def activarTarjeta(self):
 	    self._activa = True
-
- 

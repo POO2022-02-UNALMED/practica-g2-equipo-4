@@ -1,11 +1,12 @@
 from .instalacion import Instalacion
 from servicios.registro import Registro
 
-class InstalacionAdultos(Instalacion):
+class InstalacionMenores(Instalacion):
 
     def __init__(self, nombre):
-        Instalacion.__init__(self,nombre, edadRestriccion= "Adulto", costo = 100)
+        Instalacion.__init__(self,nombre, edadRestriccion= "Infante", costo = 50)
         self._MANTENIMIENTO = 2
+
 
     def agregarInstalacion(self):
         """metodo para agregar una nueva instalacion al parque"""
@@ -20,7 +21,7 @@ class InstalacionAdultos(Instalacion):
 
     def informacionInstalacion(self):
         """metodo que muestra en pantalla quienes pueden entrar a la instalacion"""
-        return f"Esta es una instalacion para mayores de 16"
+        return f"Esta es una instalacion para menores de 16"
         
     def setEdadRestriccion (self, edadRestriccion):
         self._edadRestriccion = edadRestriccion
@@ -43,4 +44,5 @@ class InstalacionAdultos(Instalacion):
         return False
 
     def __str__(self):
-        return f"Nombre: {self.getNombre()}, Restriccion: Mayores,  Costo: 100, Mantenimiento: {super().getNecesitaMantenimiento()}"
+        return f"Nombre: {self.getNombre()}, Restriccion: Menores,  Costo: 50, Mantenimiento: {super().getNecesitaMantenimiento()}"
+
