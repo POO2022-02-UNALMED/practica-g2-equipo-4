@@ -107,6 +107,7 @@ class Registro():
                 print("Instalacion: ",  self.instalaciones[k])
                 k += 1
 
+
     def buscarInstalacion(self, nombre):
         for k in range(len(self.instalaciones)):
             if self.instalaciones[k].getNombre() == nombre:

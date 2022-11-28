@@ -308,17 +308,14 @@ if __name__ == "__main__":
             if t == False:
                 etiqueta = Label(ventanasup, text="No se encontró ninguna reserva que coincida con la id").pack()
             else:
-                etiqueta = Label(ventanasup, text="t").pack()
+
+                etiqueta = Label(ventanasup, text=f"{t}").pack()
 #
         #
         ventanasup = Toplevel()
         ventanasup.geometry("400x550")
         ventanasup.title("Ver Reservas")
-        etiqueta = Label(ventanasup, text="para buscar una reserva ingrese la id", width=100).pack()
-        ids = Entry(ventanasup)
-        ids.pack()
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
-        print(Registro1.mostrarReservas())  
+        
         listar = Listbox(ventanasup, width=50)
 
         etiqueta = Label(ventanasup, text="Reservas: ", width=100).pack()
@@ -336,7 +333,10 @@ if __name__ == "__main__":
             k += 1
 
         listat.pack()
-        print("g")
+        etiqueta = Label(ventanasup, text="para buscar una reserva ingrese la id", width=100).pack()
+        ids = Entry(ventanasup)
+        ids.pack()
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
 
     def venta():
         def buscar ():
@@ -349,7 +349,7 @@ if __name__ == "__main__":
             else:
                 Registro1.eliminarReserva(l)
                 s.setReserva(None)
-                Registro1.agregarIngreso
+                Registro1.agregarIngreso()
                 t = Registro1.buscarTarjeta(id)
                 t.activarTarjeta()
                 t.setTarjetaFisica()
