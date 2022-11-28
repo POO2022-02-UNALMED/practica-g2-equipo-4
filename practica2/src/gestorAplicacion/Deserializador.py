@@ -8,22 +8,22 @@ class Deserializador:
     def deserializar(clc):
 
         clientes = open("clientes.pkl","rb")
-        Registro.clientes = pickle.load(clientes)
-        clientes.close()
+        Registro.clientes = Registro.clientes +  pickle.load(clientes)
+        #clientes.close()
 
         reservas = open("reservas.pkl","rb")
-        Registro.reservas = pickle.load(reservas)
-        reservas.close()
+        Registro.reservas = Registro.reservas + pickle.load(reservas)
+        #reservas.close()
 
         tarjetas = open("tarjetas.pkl","rb")
-        Registro.tarjetas = pickle.load(tarjetas)
-        tarjetas.close()
+        Registro.tarjetas = Registro.tarjetas + pickle.load(tarjetas)
+        #tarjetas.close()
 
         instalaciones = open("instalaciones.pkl","rb")
-        Registro.instalaciones = pickle.load(instalaciones)
-        instalaciones.close()
+        Registro.instalaciones = Registro.instalaciones  + pickle.load(instalaciones)
+        #instalaciones.close()
 
         mantenimiento = open("mantenimiento.pkl","rb")
-        Instalacion.mantenimientos = pickle.load(mantenimiento)
-        mantenimiento.close()
+        Instalacion.Mantenimientos = Instalacion.Mantenimientos + pickle.load(mantenimiento)
+        #mantenimiento.close()
 

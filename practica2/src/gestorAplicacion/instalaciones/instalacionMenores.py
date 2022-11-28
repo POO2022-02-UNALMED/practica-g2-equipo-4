@@ -5,7 +5,7 @@ class InstalacionMenores(Instalacion):
 
     def __init__(self, nombre):
         Instalacion.__init__(self,nombre, edadRestriccion= "Infante", costo = 50)
-        self._MANTENIMIENTO = 2
+        self._MANTENIMIENTO = 300
 
 
     def agregarInstalacion(self):

@@ -18,9 +18,9 @@ fichero_binario = open("pcs.pkl", "wb")
 
 if __name__ == "__main__":
     x = -8
+    Deserializador.deserializar()
     while (x == -8):
 
-        #Deserializador.deserializar()
         #Creacion del registro
         Registro1 = Registro()
 
@@ -61,10 +61,12 @@ if __name__ == "__main__":
                         tarj = Tarjeta(id, 100, "Adulto")
                         tarj.activarTarjeta()
                         Registro1.agregarTarjeta(tarj)
+                        existe.setTarjeta(tarj)
                     else:
                         tarj = Tarjeta(id, 50, "Infante")
                         tarj.activarTarjeta()
                         Registro1.agregarTarjeta(tarj)
+                        existe.setTarjeta(tarj)
                     print("Imprimiendo tarjeta...")
                     tarj.setTarjetaFisica()
                     print(tarj)
@@ -83,6 +85,7 @@ if __name__ == "__main__":
                 cli = Cliente(tipoid, id, edad)
                 Registro1.agregarCliente(cli)
                 y = Registro1.agregarIngreso()
+                cli.setTarjeta(tarj)
                 if y:
                     print("Imprimiendo tarjeta...")
                     tarj.activarTarjeta()
@@ -123,8 +126,7 @@ if __name__ == "__main__":
 
 
                 if op == 2:
-                    Registro1.mostrarClientes()
-                    id = int(input("id del cliente: "))
+                    id = int(input("Id del cliente: "))
                     print(Registro1.buscarCliente(id))
 
                 if op == 3:
@@ -141,12 +143,14 @@ if __name__ == "__main__":
                                 f = input("para que fecha desea su reserva? formato dd-mm-aaa:  ")
                                 reserva = Reserva(id, f)
                                 Registro1.agregarReserva(reserva)
+                                s.setReserva(reserva)
                             else:
                                 pass
                         else:
                             f = input("para que fecha desea su reserva? formato dd-mm-aaa:  ")
                             reserva = Reserva(id, f)
                             Registro1.agregarReserva(reserva)
+                            s.setReserva(reserva)
 
                     else:                                                                     #si no existe se regustra y se crea la reserva
                         edad = int(input("Edad del cliente: "))
@@ -160,6 +164,7 @@ if __name__ == "__main__":
                         f = input("Para que fecha desea su reserva? formato dd-mm-aaa:  ")
                         reserva = Reserva(id, f)
                         Registro1.agregarReserva(reserva)
+                        cli.setReserva(reserva)
 
                 if op == 4:
                     print("\n**Modificar reserva**")
@@ -170,6 +175,7 @@ if __name__ == "__main__":
                         f = input("Escriba la nueva fecha de su reserva en formato dd-mm-aaa:  ")
                         reserva = Reserva(id, f)
                         Registro1.agregarReserva(reserva)
+                        s.setReserva(reserva)
                     else:
                         print("No se encontraron reservas. Debe hacer una, dirijase al menú.")
 
@@ -177,9 +183,11 @@ if __name__ == "__main__":
                     print("\n**Eliminar reserva**")
                     id = int(input("Id del cliente: "))
                     l = Registro1.buscarReserva(id)
+                    cli = Registro1.buscarCliente(id)
                     if l != False:
                         l.setDesactiva()
                         Registro1.eliminarReserva(l)
+                        cli.setReserva(None)
                     else:
                         print("No se encontró ninguna reserva que coincida con la id")
 
@@ -212,7 +220,7 @@ if __name__ == "__main__":
                         else:                                                               #Si tiene reserva se elimina y se le da la tarjeta
 
                             Registro1.eliminarReserva(l)
-
+                            s.setReserva(None)
                             Registro1.agregarIngreso()
 
                             t = Registro1.buscarTarjeta(id)
@@ -237,6 +245,7 @@ if __name__ == "__main__":
                                     tarj = Tarjeta(id, 50, "Infante")
                                     tarj.activarTarjeta()
                                     Registro1.agregarTarjeta(tarj)
+                                s.setTarjeta(tarj)
                                 print("Imprimiendo tarjeta...")
                                 tarj.setTarjetaFisica()
                                 tarj.agregarEntrada()
@@ -351,9 +360,13 @@ if __name__ == "__main__":
         if opcion == 7:
             x = 0
             break
-    
-    Serializador.serializar()
 
+    guardar = int(input("Desea guardar los cambios? \n1. Si\n2. No \n"))
+    if guardar == 1:
+        Serializador.serializar()
+    if guardar == 2:
+        print("Gracias por usar la taquilla")
+        
 
                         
 

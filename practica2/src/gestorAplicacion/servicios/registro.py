@@ -11,11 +11,13 @@ class Registro():
     tarjetas = []
     instalaciones = []
     
+    
     def __init__(self):
         self._clientes = []
         self._reservas = []
         self._tarjetas = []
         self._instalaciones = []
+    
 
     @classmethod
     def agregarIngreso(cls):

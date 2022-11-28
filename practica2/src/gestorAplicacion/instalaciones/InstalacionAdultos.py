@@ -5,7 +5,7 @@ class InstalacionAdultos(Instalacion):
 
     def __init__(self, nombre):
         Instalacion.__init__(self,nombre, edadRestriccion= "Adulto", costo = 100)
-        self._MANTENIMIENTO = 2
+        self._MANTENIMIENTO = 500
 
     def agregarInstalacion(self):
         """metodo para agregar una nueva instalacion al parque"""

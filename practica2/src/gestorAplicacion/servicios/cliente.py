@@ -11,6 +11,12 @@ class Cliente:
     
     def getReserva(self):
         return self._reserva
+    
+    def setTarjeta(self, tarjeta):
+        self._tarjeta = tarjeta
+
+    def setReserva(self, reserva):
+        self._reserva = reserva
 
     def getEdad(self):
         return self._edad
