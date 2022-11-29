@@ -29,7 +29,7 @@ if __name__ == "__main__":
     ventana1 = Tk()
 
     ventana1.title("desplegable")
-    ventana1.geometry('600x600+0+0')
+    ventana1.geometry('1000x1000+0+0')
 
     barraInicio =Menu(ventana1)
     mnuArchivo=Menu(barraInicio)
@@ -43,9 +43,12 @@ if __name__ == "__main__":
 
     foto1 = PhotoImage(file= "Trenecito_del_parque.png")
 
+    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es su programa para \n gestionar el parque de diversiones \n Podrá utilizar multiplies funciones como \n agregar atracciones, ingresar clientes, hacer \n registros de ingreso, verificar mantenimiento \n y mucho mas!!!!! \n  \n   \n ", font= ("Arial", 14)).grid(row=0,column=0)
+
+
     foto1_sub=foto1.subsample(3)
     lbl_img = Label(ventana1, image = foto1_sub)
-    lbl_img.pack()
+    lbl_img.grid(row=1, column=0)
 
     #Bienvenida = Label(ventana1, text = f"Bienvenido a la taquilla\n del parque de diversiones", font=("Arial", 18), bg="black", fg = "white").grid(row=0, column=0)
     #Informacion = Label(ventana1, text = f"Hola mi nombre es .... y estoy estudiando en 6 semestre de ing de Sistemas,\nesta es mi primera interfaz y programa en poo, espero les guste").grid(row=0, column=2)
