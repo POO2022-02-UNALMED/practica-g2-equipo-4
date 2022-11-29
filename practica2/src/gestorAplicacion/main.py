@@ -41,95 +41,186 @@ if __name__ == "__main__":
 
     ventana1.config(menu=barraInicio)
 
-    nombreBienvenida = Label(ventana1, text = "El Trensito\n Chu Chu\n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=0)
+    nombreBienvenida = Label(ventana1, text = "El Trensito\n Chu Chu", font= ("Arial", 14), fg= "red").grid(row=0,column=0)
 
-    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es\n su programa para\n gestionar el\nparque de diversiones\n  \n   \n ", font= ("Arial", 14)).grid(row=0,column=1)
+    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es\n su programa para\n gestionar el\nparque de diversiones\n \n \ n", font= ("Arial", 14)).grid(row=1,column=0)
 
-    imagen1 = PhotoImage(file= "imagen1.png")
-    imagen1_sub=imagen1.subsample(3)
-    lbl_img1 = Label(ventana1, image = imagen1_sub)
-    lbl_img1.grid(row=1, column=0)
+    def cambiar1(b):
+        b1.place(x=9000,y=900)
+        b2.grid(row=2, column=0)
 
-    imagen2 = PhotoImage(file= "imagen2.png")
-    imagen2_sub=imagen2.subsample(3)
-    lbl_img2 = Label(ventana1, image = imagen2_sub)
-    lbl_img2.grid(row=1, column=1)
+    def cambiar2(b):
+        b2.place(x=9000,y=900)
+        b3.grid(row=2, column=0)
 
-    imagen3 = PhotoImage(file= "imagen3.png")
-    imagen3_sub=imagen3.subsample(3)
-    lbl_img3 = Label(ventana1, image = imagen3_sub)
-    lbl_img3.grid(row=2, column=0)
+    def cambiar3(b):
+        b3.place(x=9000,y=900)
+        b4.grid(row=2, column=0)
+    
+    def cambiar4(b):
+        b4.place(x=9000,y=900)
+        b1.grid(row=2, column=0)
 
-    imagen4 = PhotoImage(file= "imagen4.png")
-    imagen4_sub=imagen4.subsample(3)
-    lbl4_img = Label(ventana1, image = imagen4_sub)
-    lbl4_img.grid(row=2, column=1)
+    inicio1 = PhotoImage(file="imagen1.png").subsample(2)
+    b1=Button(ventana1, image=inicio1, command=lambda:cambiar1(b1))
+    b1.grid(row=2, column=0)
 
+    inicio2 = PhotoImage(file="imagen2.png").subsample(2)
+    b2=Button(ventana1, image=inicio2, command=lambda:cambiar2(b1))
+    b2.place(x=900, y=900)
 
-    separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=2)
+    inicio3 = PhotoImage(file="imagen3.png").subsample(2)
+    b3=Button(ventana1, image=inicio3, command=lambda:cambiar3(b1))
+    b3.place(x=900, y=900)
+
+    inicio4 = PhotoImage(file="imagen4.png").subsample(2)
+    b4=Button(ventana1, image=inicio4, command=lambda:cambiar4(b1))
+    b4.place(x=900, y=900)
+    
+
+    #imagen1 = PhotoImage(file= "imagen1.png")
+    #imagen1_sub=imagen1.subsample(3)
+    #lbl_img1 = Label(ventana1, image = imagen1_sub)
+    #lbl_img1.grid(row=2, column=0)
+#
+    #imagen2 = PhotoImage(file= "imagen2.png")
+    #imagen2_sub=imagen2.subsample(3)
+    #lbl_img2 = Label(ventana1, image = imagen2_sub)
+    #lbl_img2.grid(row=1, column=1)
+#
+    #imagen3 = PhotoImage(file= "imagen3.png")
+    #imagen3_sub=imagen3.subsample(3)
+    #lbl_img3 = Label(ventana1, image = imagen3_sub)
+    #lbl_img3.grid(row=3, column=0)
+#
+    #imagen4 = PhotoImage(file= "imagen4.png")
+    #imagen4_sub=imagen4.subsample(3)
+    #lbl4_img = Label(ventana1, image = imagen4_sub)
+    #lbl4_img.grid(row=2, column=1)
+#
+#
+    #separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=2)
 
 ############################ PAULA
 
-    nombrePaula = Label(ventana1, text = "Paula\nCarolina\nMisas \n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=4)
-    descripcionPaula = Label(ventana1, text = "Paula quiere ser...", font= ("Arial", 10)).grid(row=0,column=5)
+    nombrePaula = Label(ventana1, text = "Paula\nCarolina\nMisas", font= ("Arial", 14), fg= "red").grid(row=0,column=1)
+    descripcionPaula = Label(ventana1, text = "Paula quiere ser...", font= ("Arial", 10)).grid(row=1,column=1)
 
+    def cambiarp1(b):
+        p1.place(x=9000,y=900)
+        p2.grid(row=2, column=1)
 
-    Paula1 = PhotoImage(file= "Paula1.png")
-    Paula1_sub=Paula1.subsample(3)
-    P1_img = Label(ventana1, image = Paula1_sub)
-    P1_img.grid(row=1, column=4)
+    def cambiarp2(b):
+        p2.place(x=9000,y=900)
+        p3.grid(row=2, column=1)
 
-    Paula2 = PhotoImage(file= "Paula2.png")
-    Paula2_sub=Paula2.subsample(3)
-    P2_img = Label(ventana1, image = Paula2_sub)
-    P2_img.grid(row=2, column=4)
+    def cambiarp3(b):
+        p3.place(x=9000,y=900)
+        p4.grid(row=2, column=1)
 
-    
-    Paula3 = PhotoImage(file= "Paula3.png")
-    Paula3_sub=Paula3.subsample(3)
-    P3_img = Label(ventana1, image = Paula3_sub)
-    P3_img.grid(row=1, column=5)
+    def cambiarp4(b):
+        p4.place(x=9000,y=900)
+        p1.grid(row=2, column=1)
 
-    Paula4 = PhotoImage(file= "Paula4.png")
-    Paula4_sub=Paula4.subsample(3)
-    P4_img = Label(ventana1, image = Paula4_sub)
-    P4_img.grid(row=2, column=5)
+    iniciop1 = PhotoImage(file="Paula1.png").subsample(2)
+    p1=Button(ventana1, image=iniciop1, command=lambda:cambiarp1(b1))
+    p1.grid(row=2, column=1)
 
-    separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=6)
+    iniciop2 = PhotoImage(file="Paula2.png").subsample(2)
+    p2=Button(ventana1, image=iniciop2, command=lambda:cambiarp2(b1))
+    p2.place(x=900, y=900)
+
+    iniciop3 = PhotoImage(file="Paula3.png").subsample(2)
+    p3=Button(ventana1, image=iniciop3, command=lambda:cambiarp3(b1))
+    p3.place(x=900, y=900)
+
+    iniciop4 = PhotoImage(file="Paula4.png").subsample(2)
+    p4=Button(ventana1, image=iniciop4, command=lambda:cambiarp4(b1))
+    p4.place(x=900, y=900)
+
+    #Paula1 = PhotoImage(file= "Paula1.png")
+    #Paula1_sub=Paula1.subsample(3)
+    #p1_img = Label(ventana1, image = Paula1_sub)
+    #p1_img.grid(row=1, column=4)
+#
+    #Paula2 = PhotoImage(file= "Paula2.png")
+    #Paula2_sub=Paula2.subsample(3)
+    #P2_img = Label(ventana1, image = Paula2_sub)
+    #P2_img.grid(row=2, column=4)
+#
+    #
+    #Paula3 = PhotoImage(file= "Paula3.png")
+    #Paula3_sub=Paula3.subsample(3)
+    #P3_img = Label(ventana1, image = Paula3_sub)
+    #P3_img.grid(row=1, column=5)
+#
+    #Paula4 = PhotoImage(file= "Paula4.png")
+    #Paula4_sub=Paula4.subsample(3)
+    #P4_img = Label(ventana1, image = Paula4_sub)
+    #P4_img.grid(row=2, column=5)
+#
+    #separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=6)
 
 
 
 
 ############################ Luis
 
-    nombreLuis = Label(ventana1, text = "Luis\nJosé\nMejía \n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=7)
-    descripcionLuis = Label(ventana1, text = "Luis quiere ser...", font= ("Arial", 10)).grid(row=0,column=8)
+    nombreLuis = Label(ventana1, text = "Luis\nJosé\nMejía", font= ("Arial", 14), fg= "red").grid(row=0,column=2)
+    descripcionLuis = Label(ventana1, text = "Luis quiere ser...", font= ("Arial", 10)).grid(row=1,column=2)
 
+    def cambiarl1(b):
+        l1.place(x=9000,y=900)
+        l2.grid(row=2, column=2)
 
-    Luis1 = PhotoImage(file= "Luis1.png")
-    Luis1_sub=Luis1.subsample(3)
-    L1_img = Label(ventana1, image = Luis1_sub)
-    L1_img.grid(row=1, column=7)
+    def cambiarl2(b):
+        l2.place(x=9000,y=900)
+        l3.grid(row=2, column=2)
 
-    Luis2 = PhotoImage(file= "Luis2.png")
-    Luis2_sub=Luis2.subsample(3)
-    L2_img = Label(ventana1, image = Luis2_sub)
-    L2_img.grid(row=2, column=7)
+    def cambiarl3(b):
+        l3.place(x=9000,y=900)
+        l4.grid(row=2, column=2)
 
-    
-    Luis3 = PhotoImage(file= "Luis3.png")
-    Luis3_sub=Luis3.subsample(3)
-    L3_img = Label(ventana1, image = Luis3_sub)
-    L3_img.grid(row=1, column=8)
+    def cambiarl4(b):
+        l4.place(x=9000,y=900)
+        l1.grid(row=2, column=2)
 
-    Luis4 = PhotoImage(file= "Luis4.png")
-    Luis4_sub=Luis4.subsample(3)
-    L4_img = Label(ventana1, image = Luis4_sub)
-    L4_img.grid(row=2, column=8)
+    iniciol1 = PhotoImage(file="Luis1.png").subsample(2)
+    l1=Button(ventana1, image=iniciol1, command=lambda:cambiarl1(b1))
+    l1.grid(row=2, column=2)
 
-    #Bienvenida = Label(ventana1, text = f"Bienvenido a la taquilla\n del parque de diversiones", font=("Arial", 18), bg="black", fg = "white").grid(row=0, column=0)
-    #Informacion = Label(ventana1, text = f"Hola mi nombre es .... y estoy estudiando en 6 semestre de ing de Sistemas,\nesta es mi primera interfaz y programa en poo, espero les guste").grid(row=0, column=2)
-    #nieve = PhotoImage(Image.open(os.path.join(carpeta_paisajes, "nieve.jpg")).resize((350,200)))
+    iniciol2 = PhotoImage(file="Luis2.png").subsample(2)
+    l2=Button(ventana1, image=iniciol2, command=lambda:cambiarl2(b1))
+    l2.place(x=900, y=900)
+
+    iniciol3 = PhotoImage(file="Luis3.png").subsample(2)
+    l3=Button(ventana1, image=iniciol3, command=lambda:cambiarl3(b1))
+    l3.place(x=900, y=900)
+
+    iniciol4 = PhotoImage(file="Luis4.png").subsample(2)
+    l4=Button(ventana1, image=iniciol4, command=lambda:cambiarl4(b1))
+    l4.place(x=900, y=900)
+
+    #Luis1 = PhotoImage(file= "Luis1.png")
+    #Luis1_sub=Luis1.subsample(3)
+    #L1_img = Label(ventana1, image = Luis1_sub)
+    #L1_img.grid(row=1, column=7)
+#
+    #Luis2 = PhotoImage(file= "Luis2.png")
+    #Luis2_sub=Luis2.subsample(3)
+    #L2_img = Label(ventana1, image = Luis2_sub)
+    #L2_img.grid(row=2, column=7)
+#
+    #
+    #Luis3 = PhotoImage(file= "Luis3.png")
+    #Luis3_sub=Luis3.subsample(3)
+    #L3_img = Label(ventana1, image = Luis3_sub)
+    #L3_img.grid(row=1, column=8)
+#
+    #Luis4 = PhotoImage(file= "Luis4.png")
+    #Luis4_sub=Luis4.subsample(3)
+    #L4_img = Label(ventana1, image = Luis4_sub)
+    #L4_img.grid(row=2, column=8)
 
 
     def menu ():
