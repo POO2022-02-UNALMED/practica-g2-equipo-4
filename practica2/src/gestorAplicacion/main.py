@@ -237,16 +237,30 @@ if __name__ == "__main__":
         barraInicio =Menu(ventana)
         mnuArchivo=Menu(barraInicio)
         mnuAyuda=Menu(barraInicio)
+        menuProcesosYConsultas=Menu(barraInicio)
+       
 
         mnuArchivo.add_command(label="Guardar", command=guardar)
         mnuArchivo.add_command(label="Archivo")
+
+        menuProcesosYConsultas.add_cascade(label="Venta y descuento: Permite hacer ventas, y automaicamente cada 5 compras del mismo cliente, hace descuento a la siguiente")
+        menuProcesosYConsultas.add_cascade(label="Creación de reservas: Permite reservar entradas (y posteriormente concretarlas a ingresos)")
+        menuProcesosYConsultas.add_cascade(label="Registro: Se puede registrar clientes, su identificación y tarjeta asociada, así como sus reservas. También llevar otros datos de registro de uso de instalaciones")
+        menuProcesosYConsultas.add_cascade(label="Busqueda: Se puede buscar clientes y en caso de no existir, crearlos")
+        menuProcesosYConsultas.add_cascade(label="Saldo: Se puede verificar el saldo con el que cuenta la tarjeta de un cliente, y de ser necesario, recargarla para incrementar el saldo. Este se descuenta automaticamente al comprar ingresos a las instalaciones")
+        menuProcesosYConsultas.add_cascade(label="Mantenimiento: saber cuándo requieren mantenimiento")
+    
+        
 
         mnuAyuda.add_command(label="Desarrolladores:\n Paula Carolina Misas,\n-Luis José Mejía")
         mnuAyuda.add_command(label="-Paula Carolina Misas")
         mnuAyuda.add_command(label="-Luis José Mejía")
 
+
         barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+        barraInicio.add_cascade(label="Procesos y Consultas", menu=menuProcesosYConsultas)
         barraInicio.add_cascade(label="Ayuda", menu=mnuAyuda)
+        
 
         ventana.config(menu=barraInicio)
 
