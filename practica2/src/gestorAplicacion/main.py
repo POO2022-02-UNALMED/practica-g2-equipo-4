@@ -21,9 +21,11 @@ if __name__ == "__main__":
 
     ventana = Tk()
     ventana.title("Parque de Diversiones")
-    ventana.geometry("420x300")
-    etiqueta = Label(ventana, text = "Menu Principal", font=("Arial", 15), bg="black", fg = "white")
-    etiqueta.pack(fill = X)
+    ventana.geometry("420x340")
+    etiqueta = Label(ventana, text = "Menu Principal", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
+    descripcion = Label(ventana, text = "Bienvenido al menu principial aqui podrá encontrar las principales \nfunciones para hacer uno del parque\n").pack()
+
+
 
     def disponibilidad():
         ventanasup = Toplevel()
@@ -33,8 +35,9 @@ if __name__ == "__main__":
         etiqueta.pack()
         etiqueta.place(x=10,y=40)
 
-    botondisponibilidad = Button(ventana, text = "Verificar disponibilidad del parque", padx=7, pady=10, command=disponibilidad)
-    botondisponibilidad.pack()
+    etiqueta = Label(ventana, text = "Disponibilidad del parque").place(x=40, y=75)
+    botondisponibilidad = Button(ventana, text = "Boton 1",padx=47, pady=7, command=disponibilidad)
+    botondisponibilidad.place(x=200, y=70)
 
     def buscar ():
         text = id.get()
@@ -116,25 +119,28 @@ if __name__ == "__main__":
                     tarj.setTarjetaFisica()
                     Registro1.agregarTarjeta(tarj)
                     etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{tarj} \nBienvenido al parque")
-                    etiqueta.pack()
+                    etiqueta.place(x=195, y=80)
                     tarj.agregarEntrada()
 
                 else:
                     messagebox.showinfo("Entrada al parque", "Error")
 
         ventanasup = Toplevel()
-        ventanasup.geometry("400x200")
+        ventanasup.geometry("480x200")
         ventanasup.title("Ingresar Cliente")
-        etiqueta = Label(ventanasup, text="id").pack()
+        etiqueta = Label(ventanasup, text = "Ingresar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
+        descripcion = Label(ventanasup, text = "Por favor llene los espacios que se piden para poderlos guardar en la base de datos\n").pack()
+        etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
         ids = Entry(ventanasup)
-        ids.pack()
-        etiqueta2 = Label(ventanasup, text="edad").pack()
+        ids.place(x=70, y=75)
+        etiqueta2 = Label(ventanasup, text="edad").place(x=35, y=125)
         edads = Entry(ventanasup)
-        edads.pack()
-        Button(ventanasup, text="click", padx=7, pady=10, command=buscar).pack()
+        edads.place(x=70, y=125)
+        Button(ventanasup, text="Ingresar", padx=7, pady=10, command=buscar).place(x=90, y=155)
         
-    agregaringreso = Button(ventana, text = "Agregar ingreso", padx=55, pady=7, command=ingreso)
-    agregaringreso.pack()
+    etiqueta = Label(ventana, text="Agregar ingreso").place(x=40, y=125)
+    agregaringreso = Button(ventana, text = "Boton 2", padx=47, pady=7, command=ingreso)
+    agregaringreso.place(x=200, y=120)
 
 #Clientes y Reservas
     def agregarc():
@@ -191,7 +197,7 @@ if __name__ == "__main__":
         etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
         ids.pack()
-        Button(ventanasup, text="click", padx=7, pady=10, command=buscar).pack()
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
 
     def agregarr():
 
@@ -371,21 +377,30 @@ if __name__ == "__main__":
     def clientesyreservas():
         ventanasup = Toplevel()
         ventanasup.title("Clientes y Reservas")
-        ventanasup.geometry("400x350")
+        ventanasup.geometry("450x500")
         etiqueta = Label(ventanasup, text = "Menu de clientes y reservas", font=("Arial", 15), bg="black", fg = "white")
         etiqueta.pack(fill = X)
-        Button(ventanasup, text="Agregar cliente", padx=13, pady=10, command=agregarc).pack()
-        Button(ventanasup, text="Buscar cliente", padx=16, pady=10, command=buscarc).pack()
-        Button(ventanasup, text="Agregar reserva", padx=12, pady=10, command=agregarr).pack()
-        Button(ventanasup, text="Modificar reserva", padx=7, pady=10, command=modr).pack()
-        Button(ventanasup, text="Eliminar reserva", padx=11, pady=10, command=elimr).pack()
-        Button(ventanasup, text="Ver reservas", padx=22, pady=10, command=verr).pack()
-        Button(ventanasup, text="Concretar venta", padx=11, pady=10, command=venta).pack()
+        etiqueta = Label(ventanasup, text = "En este menu podra crear, modificar y visualizar clientes reservas y tarjetas\nelija una opcion").pack()
+        etiqueta = Label(ventanasup, text = "Agregar cliente").place(x=40, y=80)
+        etiqueta = Label(ventanasup, text = "Buscar cliente").place(x=40, y=130)
+        etiqueta = Label(ventanasup, text = "Agregar reserva").place(x=40, y=180)
+        etiqueta = Label(ventanasup, text = "Modificar reserva").place(x=40, y=230)
+        etiqueta = Label(ventanasup, text = "Eliminar reserva").place(x=40, y=285) 
+        etiqueta = Label(ventanasup, text = "Ver reservas").place(x=40, y=334)
+        etiqueta = Label(ventanasup, text = "Concretar venta").place(x=40, y=380)
+        Button(ventanasup, text="Boton 1", padx=47, pady=7, command=agregarc).place(x=200, y=75)
+        Button(ventanasup, text="Boton 2", padx=47, pady=7, command=buscarc).place(x=200, y=125)
+        Button(ventanasup, text="Boton 3", padx=47, pady=7, command=agregarr).place(x=200, y=175)
+        Button(ventanasup, text="Boton 4", padx=47, pady=7, command=modr).place(x=200, y=225)
+        Button(ventanasup, text="Boton 5", padx=47, pady=7, command=elimr).place(x=200, y=275)
+        Button(ventanasup, text="Boton 6", padx=47, pady=7, command=verr).place(x=200, y=325)
+        Button(ventanasup, text="Boton 7", padx=47, pady=7, command=venta).place(x=200, y=375)
         
 
 
-    agregaringreso = Button(ventana, text = "Clientes y Reservas", padx=47, pady=7, command=clientesyreservas)
-    agregaringreso.pack()
+    agregaringreso = Button(ventana, text = "Boton 3", padx=47, pady=7, command=clientesyreservas)
+    agregaringreso.place(x=200, y=165)
+    etiqueta = Label(ventana, text = "Menu de clientes y reservas").place(x=40, y=170)
     #
 
     def saldo():
@@ -396,29 +411,29 @@ if __name__ == "__main__":
                 saldol = saldos.get()
                 saldo = int(saldol)
                 t.cargarTarjeta(t, saldo)
-                etiqueta = Label(ventanasup, text=f"su tarjeta fue cargada con {saldo}\n su tarjeta es {t}", width=100).pack()
+                etiqueta = Label(ventanasup, text=f"su tarjeta fue cargada con {saldo}\n su tarjeta es {t}").grid(row= 6, column=0, sticky=E)
 
             idl = ids.get()
             id = int(idl)
             t = Registro1.buscarTarjeta(id)
             if t!= False  :
                 if t.getTarjetaFisica !=False:
-                    etiqueta = Label(ventanasup, text=f"su saldo es {t.getSaldo()}" + "\nCuanto desea cargar?  ", width=100).pack()
+                    etiqueta = Label(ventanasup, text=f"su saldo es {t.getSaldo()}" + "\nCuanto desea cargar?  ").grid(row= 5, column=1, sticky=E)
                     saldos = Entry(ventanasup)
-                    saldos.pack()
-                    Button(ventanasup, text="Pagar", padx=7, pady=10, command=cargar).pack()
+                    saldos.grid(row= 6, column=0)
+                    Button(ventanasup, text="Pagar", padx=7, pady=10, command=cargar).grid(row= 6, column=1, sticky=E)
                 else:
-                    etiqueta = Label(ventanasup, text=f"Su tarjeta no esta activa  ", width=100).pack()
+                    etiqueta = Label(ventanasup, text=f"Su tarjeta no esta activa  ").grid(row= 5, column=1, sticky=E)
             else:
-                etiqueta = Label(ventanasup, text=f"no se encontró esta tarjeta", width=100).pack()
+                etiqueta = Label(ventanasup, text=f"no se encontró esta tarjeta").grid(row= 5, column=1, sticky=E)
 
         ventanasup = Toplevel()
-        ventanasup.geometry("400x350")
+        ventanasup.geometry("600x300")
         ventanasup.title("Cargar saldo")
-        etiqueta = Label(ventanasup, text="id", width=100).pack()
+        etiqueta = Label(ventanasup, text="id").grid(row= 3, column=0)
         ids = Entry(ventanasup)
-        ids.pack()
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
+        ids.grid(row= 3, column=1)
+        Button(ventanasup, text="Buscar", padx=30, pady=6, command=buscar).grid(row= 4, column=1, sticky=E)
 
     def tiquete ():
 
@@ -432,13 +447,13 @@ if __name__ == "__main__":
                         if t.getSaldo() >= costo:
                             tiquet = Tiquete(i, id)
                             if tiquet.comprarTiquete(t) == True:
-                                etiqueta = Label(ventanasup, text=f"Su saldo es de {t.getSaldo()}", width=100).pack()
+                                messagebox.showinfo(f"Su saldo es de {t.getSaldo()}")
                             else:
                                 pass
                         else:
-                            etiqueta = Label(ventanasup, text="No tiene suficiente saldo como para entrar a esta atraccion", width=100).pack()
+                            messagebox.showinfo("No tiene suficiente saldo como para entrar a esta atraccion")
                     else:
-                        etiqueta = Label(ventanasup, text="No tenemos ninguna instalacion con este nombre", width=100).pack()
+                        messagebox.showinfo("No tenemos ninguna instalacion con este nombre")
                 
 
                 idl = ids.get()
@@ -448,28 +463,41 @@ if __name__ == "__main__":
                     if t.getTarjetaFisica !=False:                                   #si la tarjeta esta activada
                         print(t)
                         tipo = t.getTipo()
-                        etiqueta = Label(ventanasup, text="Tenemos las siguientes instalaciones:", width=100).pack()
+                        
+                        ventanasup1 = Toplevel()
+                        ventanasup1.geometry("400x350")
+                        ventanasup1.title("Tiquete")
+                        lista=[]
+                        for x in range(len(Registro.instalaciones)):
+                            lista.append(Registro.instalaciones[x].getNombre())
 
-                        Registro.Istalaciones
-                        for x in len(Registro.istalaciones):
-                            Button(ventanasup, text=Registro.instalaciones[x].getNombre(), padx=7, pady=10, command= lambda: instalacion(Registro.instalaciones[x].getNombre())).pack()
+                        k=0
+                        while k < len(lista):
+                            etiqueta = Label(ventanasup1, text=lista[k])
+                            etiqueta.grid(row = k, column=0)
+                            etiqueta2 = Label(ventanasup1, text=Registro.instalaciones[k].getEdadRestriccion())
+                            etiqueta2.grid(row = k, column=1)
+                            Button(ventanasup1, text=f"opcion {k+1}", padx=7, pady=10, command=instalacion).grid(row = k, column=2)
+                            k += 1
+                        k+=1
+                        etiqueta = Label(ventanasup1, text="Seleccione una opcion para comprar el tiquete").grid(row=k, column=1)
 
-                        Registro1.mostrarInstalaciones(tipo)
-                        z = input("A cual desea entrar?: ")
-                        i = Registro1.buscarInstalacion(z)
+
+
                     else:
-                        etiqueta = Label(ventanasup, text="La tarjeta no esta activa", width=100).pack()
+                        etiqueta = Label(ventanasup, text="La tarjeta no esta activa", width=100).grid(row=k+2, column=1)
                 else:
-                    etiqueta = Label(ventanasup, text="No tenemos ninguna tarjeta que coincida con el id", width=100).pack()
+                    etiqueta = Label(ventanasup, text="No tenemos ninguna tarjeta que coincida con el id", width=100).grid(row=k+3, column=1)
 
 
         ventanasup = Toplevel()
-        ventanasup.geometry("400x350")
+        ventanasup.geometry("200x100")
         ventanasup.title("Comprar Tiquete")
-        etiqueta = Label(ventanasup, text="id", width=100).pack()
+        etiqueta = Label(ventanasup, text="id")
+        etiqueta.grid(row=0, column=0, sticky=W)
         ids = Entry(ventanasup)
-        ids.pack()
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
+        ids.grid(row=0, column=1)
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).grid(row = 2, column=1)
 
    
 
@@ -477,77 +505,153 @@ if __name__ == "__main__":
     def acceso():
         ventanasup = Toplevel()
         ventanasup.title("Clientes y Reservas")
-        ventanasup.geometry("400x350")
+        ventanasup.geometry("400x150")
         etiqueta = Label(ventanasup, text = "Menu de acceso a instalaciones", font=("Arial", 15), bg="black", fg = "white")
         etiqueta.pack(fill = X)
-        Button(ventanasup, text="Cargar saldo", padx=22, pady=10, command=saldo).pack()
-        Button(ventanasup, text="Comprar tiquete", padx=11, pady=10, command=tiquete).pack()
+        Button(ventanasup, text="Cargar saldo", padx=22, pady=10, command=saldo).place(x=50, y=50)
+        Button(ventanasup, text="Comprar tiquete", padx=11, pady=10, command=tiquete).place(x=200, y=50)
 
-    agregaringreso = Button(ventana, text = "Acceso a instalaciones", padx=38, pady=7, command=acceso)
-    agregaringreso.pack()
+    agregaringreso = Button(ventana, text = "Boton 4", padx=47, pady=7, command=acceso)
+    agregaringreso.place(x=200, y=215)
+    etiqueta = Label(ventana, text = "Acceso a instalaciones").place(x=40, y=220)
 
 #Botoenes opciones avanzadas
 
     def avanzado():
 
         def veri ():
-            print("f")
+
+            ventanasup = Toplevel()
+            ventanasup.geometry("480x400")
+            ventanasup.title("Ver Instalaciones")
+
+            listar = Listbox(ventanasup, width=50)
+
+            etiqueta = Label(ventanasup, text="Instalaciones: ", width=300).pack()
+            k=0
+            while k < len(Registro.instalaciones):
+                listar.insert(k,Registro.instalaciones[k])
+                k += 1
+            listar.pack()
 
         def agi ():
 
             def niños():
                 
-                def crear():
-                    nombre = nombres.get()
-                    r = Registro1.buscarInstalacion(nombre)
-                    if r != False:
-                        etiqueta = Label(ventanasup, text = "ya hay una instalacion con este nombre", font=("Arial", 15), bg="black", fg = "white")
-                    else:
-                        instalacion = InstalacionMenores(nombre)
-                        Registro1.agregarInstalacion(instalacion)
-
-                etiqueta = Label(ventanasup, text = "Ingrese el nombre de la instalacion", font=("Arial", 15), bg="black", fg = "white")
-                nombres = Entry(ventanasup)
-                nombres.pack()
-                Button(ventanasup, text="Crear", padx=25, pady=10, command=crear).pack()
+                nombre = nombresn.get()
+                r = Registro1.buscarInstalacion(nombre)
+                if r != False:
+                    etiqueta = Label(ventanasup1, text = "ya hay una instalacion con este nombre").pack()
+                else:
+                    instalacion = InstalacionMenores(nombre)
+                    Registro1.agregarInstalacion(instalacion)
+                    etiqueta = Label(ventanasup1, text = "Instalacion registrada").pack()
             
             def adultos():
 
-                def crear():
-                    nombre = nombres.get()
-                    r = Registro1.buscarInstalacion(nombre)
-                    if r != False:
-                        etiqueta = Label(ventanasup, text = "ya hay una instalacion con este nombre", font=("Arial", 15), bg="black", fg = "white")
-                    else:
-                        instalacion = InstalacionMenores(nombre)
-                        Registro1.agregarInstalacion(instalacion)
+                nombre = nombresa.get()
+                r = Registro1.buscarInstalacion(nombre)
+                if r != False:
+                    etiqueta = Label(ventanasup1, text = "ya hay una instalacion con este nombre").pack()
+                else:
+                    instalacion = InstalacionAdultos(nombre)
+                    Registro1.agregarInstalacion(instalacion)
+                    etiqueta = Label(ventanasup1, text = "Instalacion registrada").pack()
 
-                etiqueta = Label(ventanasup, text = "Ingrese el nombre de la instalacion", font=("Arial", 15), bg="black", fg = "white")
-                nombres = Entry(ventanasup)
-                nombres.pack()
-                Button(ventanasup, text="Crear", padx=25, pady=10, command=crear).pack()
-
-            etiqueta = Label(ventanasup, text = "Tipo de instalacion", font=("Arial", 15), bg="black", fg = "white")
-            Button(ventanasup, text="Niños", padx=25, pady=10, command=niños).pack()
-            Button(ventanasup, text="Adultos", padx=25, pady=10, command=adultos).pack()
+            ventanasup1 = Toplevel()
+            ventanasup1.title("Opciones Avanzadas")
+            ventanasup1.geometry("400x350")
+            etiqueta = Label(ventanasup1, text = "Tipo de instalacion",font=("Arial", 12)).pack()
+            etiqueta = Label(ventanasup1, text = "Instalacion Niños").pack()
+            nombresn = Entry(ventanasup1)
+            nombresn.pack()
+            Button(ventanasup1, text="Crear", padx=30, pady=10, command=niños).pack()
+            etiqueta = Label(ventanasup1, text = "Instalacion Adultos").pack()
+            nombresa = Entry(ventanasup1)
+            nombresa.pack()
+            Button(ventanasup1, text="Crear", padx=25, pady=10, command=adultos).pack()
             print("f")
 
         def mant ():
+
+            def solicitar ():
+                nombre = nombresn.get()
+                instalacion = instalacion.instalacionesDeshuso(nombre)
+                if instalacion != False:
+                   instalacion.realizarMantenimiento()
+                else:
+                    print("no se encontro una instalacion que requiera mantenimiento con este nombre")
+
+
+            ventanasup1 = Toplevel()
+            ventanasup1.title("Opciones Avanzadas")
+            ventanasup1.geometry("400x350")
+            instal = Instalacion.mostrarSolicitudes()
+            if instal != False:
+                
+                instalacion = Label(ventanasup1, text = "Seleccione una:").pack()
+
+                listar = Listbox(ventanasup1, width=50)
+
+                etiqueta = Label(ventanasup, text="Mantenimientos: ", width=100).pack()
+                k=0
+                while k < len(Instalacion.Mantenimientos):
+                    listar.insert(k,Instalacion.Mantenimientos[k])
+                    k += 1
+                listar.pack()                
+
+                nombresn = Entry(ventanasup1)
+                nombresn.pack()
+                Button(ventanasup1, text="Crear", padx=30, pady=10, command=solicitar).pack()
+
+                activar = input("Seleccione una:  ")
+                instalacion = instalacion.instalacionesDeshuso(activar)
+                if instalacion != False:
+                   instalacion.realizarMantenimiento()
+                else:
+                    etiqueta = Label(ventanasup1, text = "no se encontro una instalacion que requiera mantenimiento con este nombre").pack()
+            else:
+                etiqueta = Label(ventanasup1, text = "Por el momento no hay ninguna instalacion que necesite mantenimiento").pack()
+        
+        #
+        
+        #
             print("f")
 
         ventanasup = Toplevel()
         ventanasup.title("Opciones Avanzadas")
         ventanasup.geometry("400x350")
         etiqueta = Label(ventanasup, text = "Menu de acceso a instalaciones", font=("Arial", 15), bg="black", fg = "white")
-        etiqueta.pack(fill = X)
-        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).pack()
-        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).pack()
-        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).pack()
+        etiqueta.grid(row=0,column=0)
+        etiqueta1 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=1,column=0)
+        etiqueta2 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=2,column=0)
+        etiqueta3 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=3,column=0)
+        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).grid(row=1,column=1)
+        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).grid(row=2,column=1)
+        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).grid(row=3,column=1)
 
+
+#
+
+    instal = Instalacion.mostrarSolicitudes()
+    if instal == False:
+        print("Por el momento no hay ninguna instalacion que necesite mantenimiento")
+    else:
+        activar = input("Seleccione una:  ")
+        instalacion =   Instalacion.instalacionesDeshuso(activar)
+        if instalacion != False:
+           instalacion.realizarMantenimiento()
+        else:
+            print("no se encontro una instalacion que requiera mantenimiento con este nombre")
+
+
+
+#
 
     #Botoenes opciones avanzadas
-    agregaringreso = Button(ventana, text = "Opciones Avanzadas", padx=42, pady=7, command=avanzado)
-    agregaringreso.pack()
+    agregaringreso = Button(ventana, text = "Boton 5", padx=47, pady=7, command=avanzado)
+    agregaringreso.place(x=200, y=265)
+    etiqueta = Label(ventana, text = "Opciones Avanzadas").place(x=40, y=270)
 
     """
     barraMenu = Menu(ventana)
