@@ -659,6 +659,17 @@ if __name__ == "__main__":
         #
             print("f")
 
+        ventanasup = Toplevel()
+        ventanasup.title("Opciones Avanzadas")
+        ventanasup.geometry("300x280")
+        etiqueta = Label(ventanasup, text = "Gestión de instalaciones", font=("Arial", 15), bg="black", fg = "white")
+        etiqueta.pack(fill=X)
+        etiqueta1 = Label(ventanasup, text = "Aquí puede ver, agregar o verificar si \n una instalación requiere mantenimiento").pack()
+        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).place(x=80, y= 100)
+        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).place(x=80, y= 150)
+        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).place(x=80, y= 200)
+
+
 
 #
 
