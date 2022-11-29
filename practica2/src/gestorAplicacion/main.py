@@ -19,6 +19,8 @@ if __name__ == "__main__":
 
     Registro1 = Registro()
 
+    
+
     ventana = Tk()
     ventana.title("Parque de Diversiones")
     ventana.geometry("420x340")
@@ -35,11 +37,6 @@ if __name__ == "__main__":
         etiqueta.pack()
         etiqueta.place(x=10,y=40)
 
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
 #    etiqueta = Label(ventana, text = "Disponibilidad del parque").place(x=40, y=75)
     botondisponibilidad = Button(ventana, text = "Disponibilidad del parque",padx=47, pady=7, command=disponibilidad)
     botondisponibilidad.place(x=90, y=70)
@@ -89,7 +86,7 @@ if __name__ == "__main__":
                         t.setTarjetaFisica()
                         t.agregarEntrada()
                         etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{t} \nBienvenido al parque")
-                        etiqueta.pack()
+                        etiqueta.place(x=210, y=80)
                     else:
                         if edad>=18:
                             tarj = Tarjeta(id, 100, "Adulto")
@@ -103,7 +100,7 @@ if __name__ == "__main__":
                         tarj.activarTarjeta()
                         tarj.setTarjetaFisica()
                         etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{tarj} \nBienvenido al parque")
-                        etiqueta.pack()
+                        etiqueta.place(x=210, y=80)
                         tarj.agregarEntrada()
                 else:
                     etiqueta = Label(ventanasup, text = f"No puede entrar")
@@ -124,7 +121,7 @@ if __name__ == "__main__":
                     tarj.setTarjetaFisica()
                     Registro1.agregarTarjeta(tarj)
                     etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{tarj} \nBienvenido al parque")
-                    etiqueta.place(x=195, y=80)
+                    etiqueta.place(x=210    , y=80)
                     tarj.agregarEntrada()
 
                 else:
@@ -144,11 +141,6 @@ if __name__ == "__main__":
         Button(ventanasup, text="Ingresar", padx=7, pady=7, command=buscar).place(x=90, y=175)
 
 
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
 #   etiqueta = Label(ventana, text="Agregar ingreso").place(x=40, y=125)
     agregaringreso = Button(ventana, text = "Agregar ingreso", padx=72, pady=7, command=ingreso)
     agregaringreso.place(x=90, y=120)
@@ -234,8 +226,6 @@ if __name__ == "__main__":
                 cli = Cliente(tipoid, id, edad)
                 Registro1.agregarCliente(cli)
                 Registro1.agregarTarjeta(tarj)
-                etiqueta = Label(ventanasup, text = f"Cliente agregado \n {cli}")
-                etiqueta.place(x=250 , y=125)
                 cli.setTarjeta(tarj)
 
                 reserva = Reserva(id, fechal)
@@ -274,10 +264,6 @@ if __name__ == "__main__":
         fechas.place(x=75, y=175)
         Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).place(x=95, y=225)
 
-#############################################################################################
-#############################################################################################
-#############################################################################################
-#############################################################################################
 
     def modr():
         def buscar ():
@@ -291,21 +277,23 @@ if __name__ == "__main__":
                 reserva = Reserva(id, fechal)
                 Registro1.agregarReserva(reserva)
                 s.setReserva(reserva)
-                etiqueta = Label(ventanasup, text=f"Su nueva reserva es \n{reserva}").pack()
+                etiqueta = Label(ventanasup, text=f"Su nueva reserva es \n{reserva}").place(x=210, y=80)
 
             else:
-                etiqueta = Label(ventanasup, text=f"No se encontraron reservas. Debe crear una.").pack()
+                etiqueta = Label(ventanasup, text=f"No se encontraron reservas. Debe crear una.").place(x=210, y=80)
         ventanasup = Toplevel()
-        ventanasup.geometry("400x200")
+        ventanasup.geometry("580x235")
         ventanasup.title("Modificar Reserva")
-        etiqueta = Label(ventanasup, text="id").pack()
+        etiqueta = Label(ventanasup, text = "Modificar Reserva", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
+        descripcion = Label(ventanasup, text = "Modifica una reserva ya existente utilizar fecha en formato dd-mm-aa").pack()
+        etiqueta = Label(ventanasup, text="id").place(x=40, y=100)
         ids = Entry(ventanasup)
-        ids.pack()
-        etiqueta = Label(ventanasup, text="fecha en formato dd-mm-aa").pack()
+        ids.place(x=70, y=100)
+        etiqueta2 = Label(ventanasup, text="fecha").place(x=35, y=140)
         fechas = Entry(ventanasup)
-        fechas.pack()
-        Button(ventanasup, text="Aceptar", padx=7, pady=10, command=buscar).pack()
-        print("g")
+        fechas.place(x=70, y=140)
+        Button(ventanasup, text="Ingresar", padx=7, pady=7, command=buscar).place(x=90, y=175)
+
 
 #
     def elimr():
@@ -318,16 +306,18 @@ if __name__ == "__main__":
                 l.setDesactiva()
                 Registro1.eliminarReserva(l)
                 cli.setReserva(None)
-                etiqueta = Label(ventanasup, text=f"Reserva eliminada").pack()
+                etiqueta = Label(ventanasup, text=f"Reserva eliminada").place(x=300, y=90)
             else:
-                etiqueta = Label(ventanasup, text=f"No se encontró ninguna reserva que coincida con la id").pack()
+                etiqueta = Label(ventanasup, text=f"No se encontró ninguna reserva que coincida con la id").place(x=300, y=90)
         ventanasup = Toplevel()
-        ventanasup.geometry("400x200")
+        ventanasup.geometry("700x200")
         ventanasup.title("Eliminar Reserva")
-        etiqueta = Label(ventanasup, text="id").pack()
+        etiqueta = Label(ventanasup, text = "Eliminar Reserva", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
+        descripcion = Label(ventanasup, text = "Elimina una reserva ya existente").pack()
+        etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
         ids = Entry(ventanasup)
-        ids.pack()
-        Button(ventanasup, text="Eliminar", padx=7, pady=10, command=buscar).pack()
+        ids.place(x=70, y=75)
+        Button(ventanasup, text="Eliminar", padx=7, pady=10, command=buscar).place(x=90, y=105)
 
     def verr():
         def buscar ():
@@ -394,12 +384,6 @@ if __name__ == "__main__":
         ids.pack()
         Button(ventanasup, text="Pagar", padx=7, pady=10, command=buscar).pack()
 
-
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
 #Botones de clientes y reservas"""
     def clientesyreservas():
         ventanasup = Toplevel()
@@ -408,13 +392,7 @@ if __name__ == "__main__":
         etiqueta = Label(ventanasup, text = "Menu de clientes y reservas", font=("Arial", 15), bg="black", fg = "white")
         etiqueta.pack(fill = X)
         etiqueta = Label(ventanasup, text = "En este menu podra crear, modificar y visualizar clientes reservas y tarjetas\nelija una opcion").pack()
-#       etiqueta = Label(ventanasup, text = "Agregar cliente").place(x=40, y=80)
-#       etiqueta = Label(ventanasup, text = "Buscar cliente").place(x=40, y=130)
-#       etiqueta = Label(ventanasup, text = "Agregar reserva").place(x=40, y=180)
-#       etiqueta = Label(ventanasup, text = "Modificar reserva").place(x=40, y=230)
-#       etiqueta = Label(ventanasup, text = "Eliminar reserva").place(x=40, y=285) 
-#       etiqueta = Label(ventanasup, text = "Ver reservas").place(x=40, y=334)
-#       etiqueta = Label(ventanasup, text = "Concretar venta").place(x=40, y=380)
+
         Button(ventanasup, text="Agregar cliente", padx=53, pady=7, command=agregarc).place(x=129, y=75)
         Button(ventanasup, text="Buscar cliente", padx=56, pady=7, command=buscarc).place(x=129, y=125)
         Button(ventanasup, text="Agregar reserva", padx=52, pady=7, command=agregarr).place(x=129, y=175)
@@ -424,11 +402,6 @@ if __name__ == "__main__":
         Button(ventanasup, text="Concretar venta", padx=50, pady=7, command=venta).place(x=129, y=375)
         
 
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
 
 #   etiqueta = Label(ventana, text = "Menu de clientes y reservas").place(x=40, y=170)
     agregaringreso = Button(ventana, text = "Menu de clientes y reservas", padx=42, pady=7, command=clientesyreservas)
@@ -471,66 +444,59 @@ if __name__ == "__main__":
     def tiquete ():
 
         def buscar():
-
-                def instalacion(nombre):
-
+                def instalacion(id):
+                    nombre = ins.get()
                     i = Registro1.buscarInstalacion(nombre)
-                    if i != False and tipo == i.getEdadRestriccion():
-                        costo = i.getCosto()
-                        if t.getSaldo() >= costo:
-                            tiquet = Tiquete(i, id)
-                            if tiquet.comprarTiquete(t) == True:
-                                messagebox.showinfo(f"Su saldo es de {t.getSaldo()}")
+                    if i != False:                                      #si la instalacion existe
+                        print("a",id)
+                        print("hola",t.getTipo(),   i.getEdadRestriccion())
+                        if t.getTipo() == i.getEdadRestriccion():
+                            costo = i.getCosto()
+                            if t.getSaldo() >= costo:
+                                tiquet = Tiquete(i, id)
+                                if tiquet.comprarTiquete(t) == True:
+                                    etiqueta = Label(ventanasup, text=f"Su saldo es de {t.getSaldo()}", width=300).pack()
+                                else:
+                                    pass
                             else:
-                                pass
+                                etiqueta = Label(ventanasup, text="nno tiene sufieciente saldo", width=300).pack()
                         else:
-                            messagebox.showinfo("No tiene suficiente saldo como para entrar a esta atraccion")
+                            etiqueta = Label(ventanasup, text="no puede entrar a esta insta", width=300).pack()
                     else:
-                        messagebox.showinfo("No tenemos ninguna instalacion con este nombre")
+                        etiqueta = Label(ventanasup, text="no tenemos ninguna instalacion con este nombre", width=300).pack()
                 
 
                 idl = ids.get()
                 id = int(idl)
-                t = Registro1.buscarTarjeta(id)     
-                if t!= False  :                                                      #si la tarjeta existe
-                    if t.getTarjetaFisica !=False:                                   #si la tarjeta esta activada
-                        print(t)
-                        tipo = t.getTipo()
-                        
-                        ventanasup1 = Toplevel()
-                        ventanasup1.geometry("400x350")
-                        ventanasup1.title("Tiquete")
-                        lista=[]
-                        for x in range(len(Registro.instalaciones)):
-                            lista.append(Registro.instalaciones[x].getNombre())
+                t = Registro1.buscarTarjeta(id)
+                ventanasup = Toplevel()
+                ventanasup.geometry("480x400")
+                ventanasup.title("Ver Instalaciones")
 
-                        k=0
-                        while k < len(lista):
-                            etiqueta = Label(ventanasup1, text=lista[k])
-                            etiqueta.grid(row = k, column=0)
-                            etiqueta2 = Label(ventanasup1, text=Registro.instalaciones[k].getEdadRestriccion())
-                            etiqueta2.grid(row = k, column=1)
-                            Button(ventanasup1, text=f"opcion {k+1}", padx=7, pady=10, command=instalacion).grid(row = k, column=2)
-                            k += 1
-                        k+=1
-                        etiqueta = Label(ventanasup1, text="Seleccione una opcion para comprar el tiquete").grid(row=k, column=1)
+                listar = Listbox(ventanasup, width=50)
 
+                etiqueta = Label(ventanasup, text="Instalaciones: ", width=300).pack()
+                k=0
 
+                while k < len(Registro.instalaciones):
+                    listar.insert(k,Registro.instalaciones[k])
+                    k += 1
+                listar.pack()           #creacion caja para mostrar instalaciones
 
-                    else:
-                        etiqueta = Label(ventanasup, text="La tarjeta no esta activa", width=100).grid(row=k+2, column=1)
-                else:
-                    etiqueta = Label(ventanasup, text="No tenemos ninguna tarjeta que coincida con el id", width=100).grid(row=k+3, column=1)
+                etiqueta = Label(ventanasup, text="Seleciione una instalacion", width=300).pack()
+                ins = Entry(ventanasup)
+                ins.pack()
+                Button(ventanasup, text="Buscar", padx=7, pady=10, command = lambda:instalacion(id)).pack()
 
 
         ventanasup = Toplevel()
         ventanasup.geometry("200x100")
         ventanasup.title("Comprar Tiquete")
         etiqueta = Label(ventanasup, text="id")
-        etiqueta.grid(row=0, column=0, sticky=W)
+        etiqueta.pack()
         ids = Entry(ventanasup)
-        ids.grid(row=0, column=1)
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).grid(row = 2, column=1)
+        ids.pack()
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
 
    
 
@@ -545,11 +511,6 @@ if __name__ == "__main__":
         Button(ventanasup, text="Cargar saldo", padx=22, pady=10, command=saldo).place(x=120, y=100)
         Button(ventanasup, text="Comprar tiquete", padx=11, pady=10, command=tiquete).place(x=120, y=165)
 
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
 
 #   etiqueta = Label(ventana, text = "Acceso a instalaciones").place(x=40, y=220)
     agregaringreso = Button(ventana, text = "Acceso a instalaciones", padx=55, pady=7, command=acceso)
@@ -685,27 +646,14 @@ if __name__ == "__main__":
             print("no se encontro una instalacion que requiera mantenimiento con este nombre")
 
 
-
-#
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-############################################################################################
-    #Botoenes "Gestión de instalaciones"
-
-#   etiqueta = Label(ventana, text = "Gestión de instalaciones").place(x=40, y=270)
     agregaringreso = Button(ventana, text = "Gestión de instalaciones", padx=50, pady=7, command=avanzado)
     agregaringreso.place(x=90, y=265)
 
-    """
-    barraMenu = Menu(ventana)
-    menuArchivo = Menu(barraMenu)
-    menuArchivo.add_command(label="Abrir")
-    """
     ventana.mainloop()
 
-    # menu normal y tkinter
+
+
+""""
     x = -8
     Deserializador.deserializar()
     while (x == -8):
@@ -1061,6 +1009,6 @@ if __name__ == "__main__":
 
 
 
-
+"""
 
 #A VER SI FUNCIONAAA
