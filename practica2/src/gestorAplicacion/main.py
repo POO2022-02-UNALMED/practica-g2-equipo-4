@@ -182,6 +182,7 @@ if __name__ == "__main__":
 
         ventanasup = Toplevel()
         ventanasup.geometry("400x100")
+        etiqueta = Label(ventanasup, text = "Agregar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
         ventanasup.title("Ingresar Cliente")
         etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
