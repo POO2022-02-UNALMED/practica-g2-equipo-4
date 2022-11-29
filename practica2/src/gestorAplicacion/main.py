@@ -131,17 +131,17 @@ if __name__ == "__main__":
                     messagebox.showinfo("Entrada al parque", "Error")
 
         ventanasup = Toplevel()
-        ventanasup.geometry("480x200")
+        ventanasup.geometry("580x235")
         ventanasup.title("Ingresar Cliente")
         etiqueta = Label(ventanasup, text = "Ingresar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
-        descripcion = Label(ventanasup, text = "Por favor llene los espacios que se piden para poderlos guardar en la base de datos\n").pack()
-        etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
+        descripcion = Label(ventanasup, text = "Agregar ingreso sin reserva\n\n Para cada ingreso, cierre y abra la ventana de nuevo").pack()
+        etiqueta = Label(ventanasup, text="id").place(x=40, y=100)
         ids = Entry(ventanasup)
-        ids.place(x=70, y=75)
-        etiqueta2 = Label(ventanasup, text="edad").place(x=35, y=125)
+        ids.place(x=70, y=100)
+        etiqueta2 = Label(ventanasup, text="edad").place(x=35, y=140)
         edads = Entry(ventanasup)
-        edads.place(x=70, y=125)
-        Button(ventanasup, text="Ingresar", padx=7, pady=10, command=buscar).place(x=90, y=155)
+        edads.place(x=70, y=140)
+        Button(ventanasup, text="Ingresar", padx=7, pady=7, command=buscar).place(x=90, y=175)
 
 
 ############################################################################################
@@ -182,7 +182,6 @@ if __name__ == "__main__":
 
         ventanasup = Toplevel()
         ventanasup.geometry("400x100")
-        etiqueta = Label(ventanasup, text = "Agregar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
         ventanasup.title("Ingresar Cliente")
         etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
@@ -527,11 +526,12 @@ if __name__ == "__main__":
     def acceso():
         ventanasup = Toplevel()
         ventanasup.title("Clientes y Reservas")
-        ventanasup.geometry("400x150")
+        ventanasup.geometry("360x250")
         etiqueta = Label(ventanasup, text = "Menu de acceso a instalaciones", font=("Arial", 15), bg="black", fg = "white")
         etiqueta.pack(fill = X)
-        Button(ventanasup, text="Cargar saldo", padx=22, pady=10, command=saldo).place(x=50, y=50)
-        Button(ventanasup, text="Comprar tiquete", padx=11, pady=10, command=tiquete).place(x=200, y=50)
+        descripcion = Label(ventanasup, text = "Aquí puede recargar salgo a la tarjeta del cliente \n o concretar la compra de tiquetes para instalaciones").pack()
+        Button(ventanasup, text="Cargar saldo", padx=22, pady=10, command=saldo).place(x=120, y=100)
+        Button(ventanasup, text="Comprar tiquete", padx=11, pady=10, command=tiquete).place(x=120, y=165)
 
 ############################################################################################
 ############################################################################################
@@ -544,7 +544,7 @@ if __name__ == "__main__":
     agregaringreso.place(x=90, y=215)
 
 
-#Botoenes opciones avanzadas
+#Botoenes "Gestión de instalaciones"
 
     def avanzado():
 
@@ -588,7 +588,7 @@ if __name__ == "__main__":
                     etiqueta = Label(ventanasup1, text = "Instalacion registrada").pack()
 
             ventanasup1 = Toplevel()
-            ventanasup1.title("Opciones Avanzadas")
+            ventanasup1.title("Gestión de instalaciones")
             ventanasup1.geometry("400x350")
             etiqueta = Label(ventanasup1, text = "Tipo de instalacion",font=("Arial", 12)).pack()
             etiqueta = Label(ventanasup1, text = "Instalacion Niños").pack()
@@ -613,7 +613,7 @@ if __name__ == "__main__":
 
 
             ventanasup1 = Toplevel()
-            ventanasup1.title("Opciones Avanzadas")
+            ventanasup1.title("Gestión de instalaciones")
             ventanasup1.geometry("400x350")
             instal = Instalacion.mostrarSolicitudes()
             if instal != False:
@@ -648,16 +648,19 @@ if __name__ == "__main__":
             print("f")
 
         ventanasup = Toplevel()
-        ventanasup.title("Opciones Avanzadas")
-        ventanasup.geometry("400x350")
-        etiqueta = Label(ventanasup, text = "Menu de acceso a instalaciones", font=("Arial", 15), bg="black", fg = "white")
-        etiqueta.grid(row=0,column=0)
-        etiqueta1 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=1,column=0)
-        etiqueta2 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=2,column=0)
-        etiqueta3 = Label(ventanasup, text = "Menu de acceso a instalaciones").grid(row=3,column=0)
-        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).grid(row=1,column=1)
-        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).grid(row=2,column=1)
-        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).grid(row=3,column=1)
+        ventanasup.title("Gestión de instalaciones") 
+        ventanasup.geometry("300x250")
+        etiqueta = Label(ventanasup, text = "Gestión de instalaciones", font=("Arial", 15), bg="black", fg = "white")
+        etiqueta.pack(fill = X)
+
+        descripcion = Label(ventanasup, text = "Aquí podrá ver, agregar y verificar la necesidad \nde mantenimiento de las instalaciones").pack()
+
+        #etiqueta1 = Label(ventanasup, text = "Menu de acceso a instalaciones").place(x=5,y=15)
+        #etiqueta2 = Label(ventanasup, text = "Menu de acceso a instalaciones").place(x=5,y=50)
+        #etiqueta3 = Label(ventanasup, text = "Menu de acceso a instalaciones").place(x=5,y=50)
+        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).place(x=78,y=75)
+        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).place(x=78,y=125)
+        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).place(x=78,y=175)
 
 
 #
@@ -681,10 +684,10 @@ if __name__ == "__main__":
 ############################################################################################
 ############################################################################################
 ############################################################################################
-    #Botoenes opciones avanzadas
+    #Botoenes "Gestión de instalaciones"
 
-#   etiqueta = Label(ventana, text = "Opciones Avanzadas").place(x=40, y=270)
-    agregaringreso = Button(ventana, text = "Opciones Avanzadas", padx=60, pady=7, command=avanzado)
+#   etiqueta = Label(ventana, text = "Gestión de instalaciones").place(x=40, y=270)
+    agregaringreso = Button(ventana, text = "Gestión de instalaciones", padx=50, pady=7, command=avanzado)
     agregaringreso.place(x=90, y=265)
 
     """
@@ -707,7 +710,7 @@ if __name__ == "__main__":
         print("2. Agregar ingreso")
         print("3. Clientes y reservas")
         print("4. Acceso a instalaciones")
-        print("6. Opciones avanzadas")
+        print("6. Gestión de instalaciones")
         print("7. Salir")
         print("************************************")
 
