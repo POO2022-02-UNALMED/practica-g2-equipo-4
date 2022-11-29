@@ -12,19 +12,72 @@ from Serializador import Serializador
 from tkinter import *
 from tkinter import messagebox
 import pickle
+import os
 
-fichero_binario = open("pcs.pkl", "wb")
+
 
 if __name__ == "__main__":
+
+    Deserializador.deserializar()
+
+    def Descripcion():
+        messagebox.showinfo(title="Descripcion", message="esto es un texto hipermegaultra larguismio")
+
 
     Registro1 = Registro()
 
     ventana1 = Tk()
 
+    ventana1.title("desplegable")
+    ventana1.geometry('600x600+0+0')
+
+    barraInicio =Menu(ventana1)
+    mnuArchivo=Menu(barraInicio)
+
+    mnuArchivo.add_command(label="Descripcion", command=Descripcion)
+    mnuArchivo.add_command(label="Salir", command=ventana1.destroy)
+
+    barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+
+    ventana1.config(menu=barraInicio)
+
+    
+
+    #Bienvenida = Label(ventana1, text = f"Bienvenido a la taquilla\n del parque de diversiones", font=("Arial", 18), bg="black", fg = "white").grid(row=0, column=0)
+    #Informacion = Label(ventana1, text = f"Hola mi nombre es .... y estoy estudiando en 6 semestre de ing de Sistemas,\nesta es mi primera interfaz y programa en poo, espero les guste").grid(row=0, column=2)
+    #nieve = PhotoImage(Image.open(os.path.join(carpeta_paisajes, "nieve.jpg")).resize((350,200)))
+
+
+    """
+    var=StringVar(ventana1)
+    var.set('Menu')
+    opciones=["uno","dos", "tres"]
+    opcion=OptionMenu(ventana1,var,*opciones)
+    opcion.config(width=20)
+    opcion.place(x=0, y=0)
+    el=Label(ventana1, text="menu de opciones")
+    el.pack()
+    """
+
     def menu ():
+
+        def guardar():
+            Serializador.serializar()
+
         ventana = Toplevel()
         ventana.title("Parque de Diversiones")
         ventana.geometry("420x340")
+
+        barraInicio =Menu(ventana)
+        mnuArchivo=Menu(barraInicio)
+
+        mnuArchivo.add_command(label="Guardar", command=guardar)
+        mnuArchivo.add_command(label="Archivo")
+
+        barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+
+        ventana.config(menu=barraInicio)
+
         etiqueta = Label(ventana, text = "Menu Principal", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
         descripcion = Label(ventana, text = "Bienvenido al menu principial aqui podrá encontrar las principales \nfunciones para hacer uno del parque\n").pack()
 
@@ -650,7 +703,7 @@ if __name__ == "__main__":
         agregaringreso = Button(ventana, text = "Gestión de instalaciones", padx=50, pady=7, command=avanzado)
         agregaringreso.place(x=90, y=265)
 
-    Button(ventana1, text="Inicio", padx=7, pady=7, command=menu).place(x=0, y=0)
+    Button(ventana1, text="Inicio", padx=7, pady=7, command=menu).place(x=0, y=550)
     ventana1.mainloop()
 
 
