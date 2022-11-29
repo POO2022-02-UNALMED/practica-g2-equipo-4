@@ -132,17 +132,6 @@ if __name__ == "__main__":
     #nieve = PhotoImage(Image.open(os.path.join(carpeta_paisajes, "nieve.jpg")).resize((350,200)))
 
 
-    """
-    var=StringVar(ventana1)
-    var.set('Menu')
-    opciones=["uno","dos", "tres"]
-    opcion=OptionMenu(ventana1,var,*opciones)
-    opcion.config(width=20)
-    opcion.place(x=0, y=0)
-    el=Label(ventana1, text="menu de opciones")
-    el.pack()
-    """
-
     def menu ():
 
         def guardar():
@@ -152,19 +141,28 @@ if __name__ == "__main__":
         ventana.title("Parque de Diversiones")
         ventana.geometry("420x340")
 
+
+########barra2
         barraInicio =Menu(ventana)
         mnuArchivo=Menu(barraInicio)
+        mnuAyuda=Menu(barraInicio)
 
         mnuArchivo.add_command(label="Guardar", command=guardar)
         mnuArchivo.add_command(label="Archivo")
 
+        mnuAyuda.add_command(label="holi")
+
         barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+        barraInicio.add_cascade(label="Ayuda", menu=mnuAyuda)
 
         ventana.config(menu=barraInicio)
+
+################
 
         etiqueta = Label(ventana, text = "Menu Principal", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
         descripcion = Label(ventana, text = "Bienvenido al menu principial aqui podrá encontrar las principales \nfunciones para hacer uno del parque\n").pack()
 
+        
 
 
         def disponibilidad():
@@ -795,10 +793,8 @@ if __name__ == "__main__":
     x = -8
     Deserializador.deserializar()
     while (x == -8):
-
         #Creacion del registro
         #Registro1 = Registro()
-
         print("\n Bienvenido a la taquilla\n************************************")
         print("1. Verificar disponibilidad del parque")
         print("2. Agregar ingreso")
@@ -807,12 +803,10 @@ if __name__ == "__main__":
         print("6. Gestión de instalaciones")
         print("7. Salir")
         print("************************************")
-
         opcion = int(input("Seleccione una opcion: "))
         
         if opcion == 1:
             print(f"El dia de hoy han ingresado {Registro.cantidadClientesDiaActual} personas al parque sobran {(1000 - Registro.cantidadClientesDiaActual)} cupos.")
-
         if opcion == 2:                                                             
             id = int(input("Id del cliente: "))
             existe = Registro1.buscarCliente(id)
@@ -869,10 +863,8 @@ if __name__ == "__main__":
                     Registro1.agregarTarjeta(tarj)
                     tarj.agregarEntrada()
                     print("Bienvenido al parque. Ya puede pasar")
-
                 else:
                     print("Error")
-
         if opcion == 3:
             select = -1
             while (select != 8):
@@ -886,9 +878,7 @@ if __name__ == "__main__":
                 + "\n7. Concretar venta"
                 + "\n8. Ir al menú principal\n"
                 + "\nSeleccione una opcion:  "))
-
                 if op==1:
-
                     print("\n**Registrar**")
                     id = int(input("Id del cliente: "))
                     edad = int(input("Edad del cliente: "))
@@ -898,12 +888,9 @@ if __name__ == "__main__":
                         tipoid = "ti"
                     cli = Cliente(tipoid, id, edad)
                     Registro1.agregarCliente(cli)
-
-
                 if op == 2:
                     id = int(input("Id del cliente: "))
                     print(Registro1.buscarCliente(id))
-
                 if op == 3:
                     print("\n**Registrar reserva**")
                     id = int(input("Id del cliente: "))
@@ -926,7 +913,6 @@ if __name__ == "__main__":
                             reserva = Reserva(id, f)
                             Registro1.agregarReserva(reserva)
                             s.setReserva(reserva)
-
                     else:                                                                     #si no existe se regustra y se crea la reserva
                         edad = int(input("Edad del cliente: "))
                         if edad>=18:
@@ -935,12 +921,10 @@ if __name__ == "__main__":
                             tipoid = "ti"
                         cli = Cliente(tipoid, id, edad)
                         Registro1.agregarCliente(cli)
-
                         f = input("Para que fecha desea su reserva? formato dd-mm-aaa:  ")
                         reserva = Reserva(id, f)
                         Registro1.agregarReserva(reserva)
                         cli.setReserva(reserva)
-
                 if op == 4:
                     print("\n**Modificar reserva**")
                     id = int(input("Id del cliente: "))
@@ -953,7 +937,6 @@ if __name__ == "__main__":
                         s.setReserva(reserva)
                     else:
                         print("No se encontraron reservas. Debe hacer una, dirijase al menú.")
-
                 if op == 5:
                     print("\n**Eliminar reserva**")
                     id = int(input("Id del cliente: "))
@@ -965,7 +948,6 @@ if __name__ == "__main__":
                         cli.setReserva(None)
                     else:
                         print("No se encontró ninguna reserva que coincida con la id")
-
                 if op == 6:
                     p = int(input("1. Ver todas las reservas activas"+
                          "\n2. Buscar una reserva\n"))
@@ -993,11 +975,9 @@ if __name__ == "__main__":
                         if l==False:                                                     #Si existe el cliente se le busca la reserva
                             print("Este cliente no tiene ninguna reserva activa")
                         else:                                                               #Si tiene reserva se elimina y se le da la tarjeta
-
                             Registro1.eliminarReserva(l)
                             s.setReserva(None)
                             Registro1.agregarIngreso()
-
                             t = Registro1.buscarTarjeta(id)
                             if t != False:                                                          #se comprueba si el cliente tiene tarjeta, si no se crea
                                 t.agregarEntrada()
@@ -1083,7 +1063,6 @@ if __name__ == "__main__":
                     else:
                         print("no se encontró esta tarjeta")
                     
-
         if opcion == 6:
             selec = -2
             while (selec != 4):
@@ -1096,7 +1075,6 @@ if __name__ == "__main__":
             
                 if ops == 1:
                     Registro1.mostrarInstalaciones("Todas")
-
                 if ops == 2:
                     tipo = int(input("1. Niños \n2. Adultos \nLa instalacion es para: "))
                     if tipo == 1:
@@ -1127,26 +1105,19 @@ if __name__ == "__main__":
                            instalacion.realizarMantenimiento()
                         else:
                             print("no se encontro una instalacion que requiera mantenimiento con este nombre")
-
                 if ops == 4:
                     select = 4
                     break
-
         if opcion == 7:
             x = 0
             break
-
     guardar = int(input("Desea guardar los cambios? \n1. Si\n2. No \n"))
     if guardar == 1:
         Serializador.serializar()
     if guardar == 2:
         print("Gracias por usar la taquilla")
         
-
                         
-
-
-
 """
 
 #A VER SI FUNCIONAAA
