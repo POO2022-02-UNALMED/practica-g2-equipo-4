@@ -29,7 +29,7 @@ if __name__ == "__main__":
     ventana1 = Tk()
 
     ventana1.title("desplegable")
-    ventana1.geometry('1000x1000+0+0')
+    ventana1.geometry('1200x630+0+0')
 
     barraInicio =Menu(ventana1)
     mnuArchivo=Menu(barraInicio)
@@ -41,14 +41,91 @@ if __name__ == "__main__":
 
     ventana1.config(menu=barraInicio)
 
-    foto1 = PhotoImage(file= "Trenecito_del_parque.png")
+    nombreBienvenida = Label(ventana1, text = "El Trensito\n Chu Chu\n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=0)
 
-    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es su programa para \n gestionar el parque de diversiones \n Podrá utilizar multiplies funciones como \n agregar atracciones, ingresar clientes, hacer \n registros de ingreso, verificar mantenimiento \n y mucho mas!!!!! \n  \n   \n ", font= ("Arial", 14)).grid(row=0,column=0)
+    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es\n su programa para\n gestionar el\nparque de diversiones\n  \n   \n ", font= ("Arial", 14)).grid(row=0,column=1)
+
+    imagen1 = PhotoImage(file= "imagen1.png")
+    imagen1_sub=imagen1.subsample(3)
+    lbl_img1 = Label(ventana1, image = imagen1_sub)
+    lbl_img1.grid(row=1, column=0)
+
+    imagen2 = PhotoImage(file= "imagen2.png")
+    imagen2_sub=imagen2.subsample(3)
+    lbl_img2 = Label(ventana1, image = imagen2_sub)
+    lbl_img2.grid(row=1, column=1)
+
+    imagen3 = PhotoImage(file= "imagen3.png")
+    imagen3_sub=imagen3.subsample(3)
+    lbl_img3 = Label(ventana1, image = imagen3_sub)
+    lbl_img3.grid(row=2, column=0)
+
+    imagen4 = PhotoImage(file= "imagen4.png")
+    imagen4_sub=imagen4.subsample(3)
+    lbl4_img = Label(ventana1, image = imagen4_sub)
+    lbl4_img.grid(row=2, column=1)
 
 
-    foto1_sub=foto1.subsample(3)
-    lbl_img = Label(ventana1, image = foto1_sub)
-    lbl_img.grid(row=1, column=0)
+    separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=2)
+
+############################ PAULA
+
+    nombrePaula = Label(ventana1, text = "Paula\nCarolina\nMisas \n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=4)
+    descripcionPaula = Label(ventana1, text = "Paula quiere ser...", font= ("Arial", 10)).grid(row=0,column=5)
+
+
+    Paula1 = PhotoImage(file= "Paula1.png")
+    Paula1_sub=Paula1.subsample(3)
+    P1_img = Label(ventana1, image = Paula1_sub)
+    P1_img.grid(row=1, column=4)
+
+    Paula2 = PhotoImage(file= "Paula2.png")
+    Paula2_sub=Paula2.subsample(3)
+    P2_img = Label(ventana1, image = Paula2_sub)
+    P2_img.grid(row=2, column=4)
+
+    
+    Paula3 = PhotoImage(file= "Paula3.png")
+    Paula3_sub=Paula3.subsample(3)
+    P3_img = Label(ventana1, image = Paula3_sub)
+    P3_img.grid(row=1, column=5)
+
+    Paula4 = PhotoImage(file= "Paula4.png")
+    Paula4_sub=Paula4.subsample(3)
+    P4_img = Label(ventana1, image = Paula4_sub)
+    P4_img.grid(row=2, column=5)
+
+    separador1= Label(ventana1, text = "          ", font= ("Arial", 14, )).grid(row=0,column=6)
+
+
+
+
+############################ Luis
+
+    nombreLuis = Label(ventana1, text = "Luis\nJosé\nMejía \n \n \n \n \n", font= ("Arial", 14), fg= "red").grid(row=0,column=7)
+    descripcionLuis = Label(ventana1, text = "Luis quiere ser...", font= ("Arial", 10)).grid(row=0,column=8)
+
+
+    Luis1 = PhotoImage(file= "Luis1.png")
+    Luis1_sub=Luis1.subsample(3)
+    L1_img = Label(ventana1, image = Luis1_sub)
+    L1_img.grid(row=1, column=7)
+
+    Luis2 = PhotoImage(file= "Luis2.png")
+    Luis2_sub=Luis2.subsample(3)
+    L2_img = Label(ventana1, image = Luis2_sub)
+    L2_img.grid(row=2, column=7)
+
+    
+    Luis3 = PhotoImage(file= "Luis3.png")
+    Luis3_sub=Luis3.subsample(3)
+    L3_img = Label(ventana1, image = Luis3_sub)
+    L3_img.grid(row=1, column=8)
+
+    Luis4 = PhotoImage(file= "Luis4.png")
+    Luis4_sub=Luis4.subsample(3)
+    L4_img = Label(ventana1, image = Luis4_sub)
+    L4_img.grid(row=2, column=8)
 
     #Bienvenida = Label(ventana1, text = f"Bienvenido a la taquilla\n del parque de diversiones", font=("Arial", 18), bg="black", fg = "white").grid(row=0, column=0)
     #Informacion = Label(ventana1, text = f"Hola mi nombre es .... y estoy estudiando en 6 semestre de ing de Sistemas,\nesta es mi primera interfaz y programa en poo, espero les guste").grid(row=0, column=2)
@@ -710,7 +787,7 @@ if __name__ == "__main__":
         agregaringreso = Button(ventana, text = "Gestión de instalaciones", padx=50, pady=7, command=avanzado)
         agregaringreso.place(x=90, y=265)
 
-    Button(ventana1, text="Inicio", padx=7, pady=7, command=menu).place(x=0, y=550)
+    Button(ventana1, text="Menú", padx=7, pady=7, command=menu).place(x=155, y=570)
     ventana1.mainloop()
 
 
