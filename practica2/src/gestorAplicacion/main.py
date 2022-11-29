@@ -41,7 +41,11 @@ if __name__ == "__main__":
 
     ventana1.config(menu=barraInicio)
 
-    
+    foto1 = PhotoImage(file= "Trenecito_del_parque.png")
+
+    foto1_sub=foto1.subsample(3)
+    lbl_img = Label(ventana1, image = foto1_sub)
+    lbl_img.pack()
 
     #Bienvenida = Label(ventana1, text = f"Bienvenido a la taquilla\n del parque de diversiones", font=("Arial", 18), bg="black", fg = "white").grid(row=0, column=0)
     #Informacion = Label(ventana1, text = f"Hola mi nombre es .... y estoy estudiando en 6 semestre de ing de Sistemas,\nesta es mi primera interfaz y programa en poo, espero les guste").grid(row=0, column=2)
