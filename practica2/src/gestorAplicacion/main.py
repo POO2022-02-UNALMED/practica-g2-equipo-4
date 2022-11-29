@@ -235,45 +235,49 @@ if __name__ == "__main__":
                 Registro1.agregarCliente(cli)
                 Registro1.agregarTarjeta(tarj)
                 etiqueta = Label(ventanasup, text = f"Cliente agregado \n {cli}")
-                etiqueta.pack()
+                etiqueta.place(x=250 , y=125)
                 cli.setTarjeta(tarj)
 
                 reserva = Reserva(id, fechal)
                 Registro1.agregarReserva(reserva)
                 cli.setReserva(reserva)
                 etiqueta = Label(ventanasup, text = f"Reserva exitosa \n {reserva}")
-                etiqueta.pack()
+                etiqueta.place(x=250 , y=125)
                 
             else:
                 l = Registro1.buscarReserva(id)
                 if l != False:
                     etiqueta = Label(ventanasup, text = f"Este cliente ya tiene una reserva.")
-                    etiqueta.pack()
+                    etiqueta.place(x=250 , y=125)
 
                 else:
                     reserva = Reserva(id, fechal)
                     Registro1.agregarReserva(reserva)
                     s.setReserva(reserva)
                     etiqueta = Label(ventanasup, text = f"Reserva exitosa \n {reserva}")
-                    etiqueta.pack()
+                    etiqueta.place(x=250 , y=125)
         #
 
         ventanasup = Toplevel()
-        ventanasup.geometry("700x200")
+        ventanasup.geometry("550x300")
         ventanasup.title("Agregar Reserva")
         etiqueta = Label(ventanasup, text = "Agregar Reserva", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
         descripcion = Label(ventanasup, text = "Por favor llene los espacios que se piden para poderlos guardar en la base de datos\n").pack()
         etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
         ids = Entry(ventanasup)
-        ids.place(x=70, y=75)
-        etiqueta2 = Label(ventanasup, text="edad").place(x=35, y=125)
+        ids.place(x=75, y=75)
+        etiqueta2 = Label(ventanasup, text="edad").place(x=40, y=125)
         edads = Entry(ventanasup)
-        edads.place(x=70, y=125)
-        etiqueta2 = Label(ventanasup, text="fecha").place(x=35, y=125)
-        edads = Entry(ventanasup)
-        edads.place(x=70, y=125)
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).place(x=90, y=155)
+        edads.place(x=75, y=125)
+        etiqueta2 = Label(ventanasup, text="fecha").place(x=40, y=175)
+        fechas = Entry(ventanasup)
+        fechas.place(x=75, y=175)
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).place(x=95, y=225)
 
+#############################################################################################
+#############################################################################################
+#############################################################################################
+#############################################################################################
 
     def modr():
         def buscar ():
@@ -654,17 +658,6 @@ if __name__ == "__main__":
         
         #
             print("f")
-
-        ventanasup = Toplevel()
-        ventanasup.title("Opciones Avanzadas")
-        ventanasup.geometry("400x350")
-        etiqueta = Label(ventanasup, text = "Menu de acceso a instalaciones", font=("Arial", 15), bg="black", fg = "white")
-        etiqueta.pack(fill=X)
-        etiqueta1 = Label(ventanasup, text = "Menu de acceso a instalaciones").pack()
-        Button(ventanasup, text="Ver instalaciones", padx=25, pady=10, command=veri).place(x=0, y= 50)
-        Button(ventanasup, text="Agregar instalaciones", padx=12, pady=10, command=agi).place(x=0, y= 100)
-        Button(ventanasup, text="Hacer mantenimiento", padx=11, pady=10, command=mant).place(x=0, y= 150)
-
 
 
 #
