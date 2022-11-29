@@ -21,7 +21,7 @@ if __name__ == "__main__":
     Deserializador.deserializar()
 
     def Descripcion():
-        messagebox.showinfo(title="Descripcion", message="esto es un texto hipermegaultra larguismio")
+        messagebox.showinfo(title="Descripcion", message="Con este software, puede gestionar el parque de diversiones.\nPodrá:\n-verificar la disponibilidad de cupo del parque\n-registrar los ingresos\n-gestionar clientes, reservas y sus tarjetas de usuario\n-Cargar saldos y vender tiquetes para entrar a las atracciones\n-Además agregar nuevas instalaciones y verificar cuándo requieren mantenimiento  ")
 
 
     Registro1 = Registro()
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     ventana1 = Tk()
 
     ventana1.title("desplegable")
-    ventana1.geometry('1200x630+0+0')
+    ventana1.geometry('765x630+0+0')
 
     barraInicio =Menu(ventana1)
     mnuArchivo=Menu(barraInicio)
@@ -41,9 +41,9 @@ if __name__ == "__main__":
 
     ventana1.config(menu=barraInicio)
 
-    nombreBienvenida = Label(ventana1, text = "El Trensito\n Chu Chu", font= ("Arial", 14), fg= "red").grid(row=0,column=0)
+    nombreBienvenida = Label(ventana1, text = "El Trensito\n Chu Chu, \nsoftware de gestión", font= ("Arial", 14), fg= "red").grid(row=0,column=0)
 
-    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es\n su programa para\n gestionar el\nparque de diversiones\n \n \ n", font= ("Arial", 14)).grid(row=1,column=0)
+    saludoBienvenida = Label(ventana1, text = "Bienvenido, este es\n su programa para\n gestionar el\nparque de diversiones\n \n \n", font= ("Arial", 14)).grid(row=1,column=0)
 
     def cambiar1(b):
         b1.place(x=9000,y=900)
@@ -103,8 +103,8 @@ if __name__ == "__main__":
 
 ############################ PAULA
 
-    nombrePaula = Label(ventana1, text = "Paula\nCarolina\nMisas", font= ("Arial", 14), fg= "red").grid(row=0,column=1)
-    descripcionPaula = Label(ventana1, text = "Paula quiere ser...", font= ("Arial", 10)).grid(row=1,column=1)
+    nombrePaula = Label(ventana1, text = "Paula Carolina Misas", font= ("Arial", 14), fg= "red").grid(row=0,column=1)
+    descripcionPaula = Label(ventana1, text = "Nacimiento: 2000\n \nEstudios: \n-Bachiller académico\n-Cursando el pregrado de\ningeniería de sistemas\n e informática (actual) ", font= ("Arial", 10)).grid(row=1,column=1)
 
     def cambiarp1(b):
         p1.place(x=9000,y=900)
@@ -166,8 +166,8 @@ if __name__ == "__main__":
 
 ############################ Luis
 
-    nombreLuis = Label(ventana1, text = "Luis\nJosé\nMejía", font= ("Arial", 14), fg= "red").grid(row=0,column=2)
-    descripcionLuis = Label(ventana1, text = "Luis quiere ser...", font= ("Arial", 10)).grid(row=1,column=2)
+    nombreLuis = Label(ventana1, text = "Luis José Mejía", font= ("Arial", 14), fg= "red").grid(row=0,column=2)
+    descripcionLuis = Label(ventana1, text = "Nacimiento: 1993\n \nEstudios: \n-Bachiller académico\n-Cursando el pregrado de\ningeniería de sistemas\n e informática (actual) ", font= ("Arial", 10)).grid(row=1,column=2)
 
     def cambiarl1(b):
         l1.place(x=9000,y=900)
@@ -238,14 +238,30 @@ if __name__ == "__main__":
         barraInicio =Menu(ventana)
         mnuArchivo=Menu(barraInicio)
         mnuAyuda=Menu(barraInicio)
+        menuProcesosYConsultas=Menu(barraInicio)
+       
 
         mnuArchivo.add_command(label="Guardar", command=guardar)
         mnuArchivo.add_command(label="Archivo")
 
-        mnuAyuda.add_command(label="holi")
+        menuProcesosYConsultas.add_cascade(label="Venta y descuento: Permite hacer ventas, y automaicamente cada 5 compras del mismo cliente, hace descuento a la siguiente")
+        menuProcesosYConsultas.add_cascade(label="Creación de reservas: Permite reservar entradas (y posteriormente concretarlas a ingresos)")
+        menuProcesosYConsultas.add_cascade(label="Registro: Se puede registrar clientes, su identificación y tarjeta asociada, así como sus reservas. También llevar otros datos de registro de uso de instalaciones")
+        menuProcesosYConsultas.add_cascade(label="Busqueda: Se puede buscar clientes y en caso de no existir, crearlos")
+        menuProcesosYConsultas.add_cascade(label="Saldo: Se puede verificar el saldo con el que cuenta la tarjeta de un cliente, y de ser necesario, recargarla para incrementar el saldo. Este se descuenta automaticamente al comprar ingresos a las instalaciones")
+        menuProcesosYConsultas.add_cascade(label="Mantenimiento: saber cuándo requieren mantenimiento")
+    
+        
+
+        mnuAyuda.add_command(label="Desarrolladores:\n Paula Carolina Misas,\n-Luis José Mejía")
+        mnuAyuda.add_command(label="-Paula Carolina Misas")
+        mnuAyuda.add_command(label="-Luis José Mejía")
+
 
         barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+        barraInicio.add_cascade(label="Procesos y Consultas", menu=menuProcesosYConsultas)
         barraInicio.add_cascade(label="Ayuda", menu=mnuAyuda)
+        
 
         ventana.config(menu=barraInicio)
 
