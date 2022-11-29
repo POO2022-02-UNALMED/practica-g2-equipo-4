@@ -40,9 +40,9 @@ if __name__ == "__main__":
 ############################################################################################
 ############################################################################################
 ############################################################################################
-    etiqueta = Label(ventana, text = "Disponibilidad del parque").place(x=40, y=75)
-    botondisponibilidad = Button(ventana, text = "Boton 1",padx=47, pady=7, command=disponibilidad)
-    botondisponibilidad.place(x=200, y=70)
+#    etiqueta = Label(ventana, text = "Disponibilidad del parque").place(x=40, y=75)
+    botondisponibilidad = Button(ventana, text = "Disponibilidad del parque",padx=47, pady=7, command=disponibilidad)
+    botondisponibilidad.place(x=90, y=70)
 
     def buscar ():
         text = id.get()
@@ -88,7 +88,8 @@ if __name__ == "__main__":
                         t.activarTarjeta()
                         t.setTarjetaFisica()
                         t.agregarEntrada()
-                        etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{t} \nBienvenido al parque").place(x=195, y=80)
+                        etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{t} \nBienvenido al parque")
+                        etiqueta.pack()
                     else:
                         if edad>=18:
                             tarj = Tarjeta(id, 100, "Adulto")
@@ -101,7 +102,8 @@ if __name__ == "__main__":
                         existe.setTarjeta(tarj)
                         tarj.activarTarjeta()
                         tarj.setTarjetaFisica()
-                        etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{tarj} \nBienvenido al parque").place(x=195, y=80)
+                        etiqueta = Label(ventanasup, text = f"Imprimiendo tarjeta...\n{tarj} \nBienvenido al parque")
+                        etiqueta.pack()
                         tarj.agregarEntrada()
                 else:
                     etiqueta = Label(ventanasup, text = f"No puede entrar")
@@ -142,9 +144,14 @@ if __name__ == "__main__":
         Button(ventanasup, text="Ingresar", padx=7, pady=10, command=buscar).place(x=90, y=155)
 
 
-    etiqueta = Label(ventana, text="Agregar ingreso").place(x=40, y=125)
-    agregaringreso = Button(ventana, text = "Boton 2", padx=47, pady=7, command=ingreso)
-    agregaringreso.place(x=200, y=120)
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+############################################################################################
+#   etiqueta = Label(ventana, text="Agregar ingreso").place(x=40, y=125)
+    agregaringreso = Button(ventana, text = "Agregar ingreso", padx=72, pady=7, command=ingreso)
+    agregaringreso.place(x=90, y=120)
 
 #Clientes y Reservas
     def agregarc():
@@ -166,30 +173,23 @@ if __name__ == "__main__":
                 Registro1.agregarCliente(cli)
                 Registro1.agregarTarjeta(tarj)
                 etiqueta = Label(ventanasup, text = f"Cliente agregado \n {cli}")
-                etiqueta.place(x = 300, y = 100)
+                etiqueta.pack()
                 cli.setTarjeta(tarj)
             else:
                 etiqueta = Label(ventanasup, text = f"Cliente ya existe")
-                etiqueta.place(x = 300, y = 100)
-
-######################################################################
-######################################################################
-######################################################################
-######################################################################
+                etiqueta.pack()
 
 
         ventanasup = Toplevel()
-        ventanasup.geometry("480x200")
+        ventanasup.geometry("400x100")
         ventanasup.title("Ingresar Cliente")
-        etiqueta = Label(ventanasup, text = "Ingresar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
-        descripcion = Label(ventanasup, text = "Por favor llene los espacios que se piden para poderlos guardar en la base de datos\n").pack()
-        etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
+        etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
-        ids.place(x=70, y=75)
-        etiqueta2 = Label(ventanasup, text="edad").place(x=35, y=125)
+        ids.pack()
+        etiqueta2 = Label(ventanasup, text="edad").pack()
         edads = Entry(ventanasup)
-        edads.place(x=70, y=125)
-        Button(ventanasup, text="Ingresar", padx=7, pady=10, command=buscar).place(x=90, y=155)
+        edads.pack()
+        Button(ventanasup, text="Aceptar", padx=7, pady=10, command=buscar).pack()
 
 
     def buscarc():
@@ -197,26 +197,18 @@ if __name__ == "__main__":
             idl = ids.get()
             id = int(idl)
             if Registro1.buscarCliente(id) == False:
-                etiqueta = Label(ventanasup, text = f"no encontramos ningun cliente con esta id").place(x=250, y=80)
+                etiqueta = Label(ventanasup, text = f"no encontramos ningun cliente con esta id")
+                etiqueta.pack()
             else:
-                etiqueta = Label(ventanasup, text = f"Cliente encontrado \n{Registro1.buscarCliente(id)}").place(x=195, y=80)
-
-
-#############################################################################
-#############################################################################
-#############################################################################
-#############################################################################
-#############################################################################
-
+                etiqueta = Label(ventanasup, text = f"Cliente encontrado \n{Registro1.buscarCliente(id)}")
+                etiqueta.pack()
         ventanasup = Toplevel()
-        ventanasup.geometry("680x200")
+        ventanasup.geometry("400x200")
         ventanasup.title("Buscar Cliente")
-        etiqueta = Label(ventanasup, text = "Buscar Cliente", font=("Arial", 15), bg="black", fg = "white").pack(fill = X)
-        descripcion = Label(ventanasup, text = "Por favor llene los espacios que se piden para poderlos guardar en la base de datos\n").pack()
-        etiqueta = Label(ventanasup, text="id").place(x=40, y=75)
+        etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
-        ids.place(x=70, y=75)
-        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).place(x=90, y=120)
+        ids.pack()
+        Button(ventanasup, text="Buscar", padx=7, pady=10, command=buscar).pack()
 
     def agregarr():
 
@@ -272,7 +264,7 @@ if __name__ == "__main__":
         etiqueta2 = Label(ventanasup, text="edad").pack()
         edads = Entry(ventanasup)
         edads.pack()
-        Button(ventanasup, text="click", padx=7, pady=10, command=buscar).pack()
+        Button(ventanasup, text="Aceptar", padx=7, pady=10, command=buscar).pack()
 
 
     def modr():
@@ -300,7 +292,7 @@ if __name__ == "__main__":
         etiqueta = Label(ventanasup, text="fecha en formato dd-mm-aa").pack()
         fechas = Entry(ventanasup)
         fechas.pack()
-        Button(ventanasup, text="click", padx=7, pady=10, command=buscar).pack()
+        Button(ventanasup, text="Aceptar", padx=7, pady=10, command=buscar).pack()
         print("g")
 
 #
@@ -323,7 +315,7 @@ if __name__ == "__main__":
         etiqueta = Label(ventanasup, text="id").pack()
         ids = Entry(ventanasup)
         ids.pack()
-        Button(ventanasup, text="click", padx=7, pady=10, command=buscar).pack()
+        Button(ventanasup, text="Eliminar", padx=7, pady=10, command=buscar).pack()
 
     def verr():
         def buscar ():
@@ -404,20 +396,20 @@ if __name__ == "__main__":
         etiqueta = Label(ventanasup, text = "Menu de clientes y reservas", font=("Arial", 15), bg="black", fg = "white")
         etiqueta.pack(fill = X)
         etiqueta = Label(ventanasup, text = "En este menu podra crear, modificar y visualizar clientes reservas y tarjetas\nelija una opcion").pack()
-        etiqueta = Label(ventanasup, text = "Agregar cliente").place(x=40, y=80)
-        etiqueta = Label(ventanasup, text = "Buscar cliente").place(x=40, y=130)
-        etiqueta = Label(ventanasup, text = "Agregar reserva").place(x=40, y=180)
-        etiqueta = Label(ventanasup, text = "Modificar reserva").place(x=40, y=230)
-        etiqueta = Label(ventanasup, text = "Eliminar reserva").place(x=40, y=285) 
-        etiqueta = Label(ventanasup, text = "Ver reservas").place(x=40, y=334)
-        etiqueta = Label(ventanasup, text = "Concretar venta").place(x=40, y=380)
-        Button(ventanasup, text="Boton 1", padx=47, pady=7, command=agregarc).place(x=200, y=75)
-        Button(ventanasup, text="Boton 2", padx=47, pady=7, command=buscarc).place(x=200, y=125)
-        Button(ventanasup, text="Boton 3", padx=47, pady=7, command=agregarr).place(x=200, y=175)
-        Button(ventanasup, text="Boton 4", padx=47, pady=7, command=modr).place(x=200, y=225)
-        Button(ventanasup, text="Boton 5", padx=47, pady=7, command=elimr).place(x=200, y=275)
-        Button(ventanasup, text="Boton 6", padx=47, pady=7, command=verr).place(x=200, y=325)
-        Button(ventanasup, text="Boton 7", padx=47, pady=7, command=venta).place(x=200, y=375)
+#       etiqueta = Label(ventanasup, text = "Agregar cliente").place(x=40, y=80)
+#       etiqueta = Label(ventanasup, text = "Buscar cliente").place(x=40, y=130)
+#       etiqueta = Label(ventanasup, text = "Agregar reserva").place(x=40, y=180)
+#       etiqueta = Label(ventanasup, text = "Modificar reserva").place(x=40, y=230)
+#       etiqueta = Label(ventanasup, text = "Eliminar reserva").place(x=40, y=285) 
+#       etiqueta = Label(ventanasup, text = "Ver reservas").place(x=40, y=334)
+#       etiqueta = Label(ventanasup, text = "Concretar venta").place(x=40, y=380)
+        Button(ventanasup, text="Agregar cliente", padx=53, pady=7, command=agregarc).place(x=129, y=75)
+        Button(ventanasup, text="Buscar cliente", padx=56, pady=7, command=buscarc).place(x=129, y=125)
+        Button(ventanasup, text="Agregar reserva", padx=52, pady=7, command=agregarr).place(x=129, y=175)
+        Button(ventanasup, text="Modificar reserva", padx=47, pady=7, command=modr).place(x=129, y=225)
+        Button(ventanasup, text="Eliminar reserva", padx=51, pady=7, command=elimr).place(x=129, y=275)
+        Button(ventanasup, text="Ver reservas", padx=61, pady=7, command=verr).place(x=129, y=325)
+        Button(ventanasup, text="Concretar venta", padx=50, pady=7, command=venta).place(x=129, y=375)
         
 
 ############################################################################################
@@ -425,9 +417,11 @@ if __name__ == "__main__":
 ############################################################################################
 ############################################################################################
 ############################################################################################
-    agregaringreso = Button(ventana, text = "Boton 3", padx=47, pady=7, command=clientesyreservas)
-    agregaringreso.place(x=200, y=165)
-    etiqueta = Label(ventana, text = "Menu de clientes y reservas").place(x=40, y=170)
+
+#   etiqueta = Label(ventana, text = "Menu de clientes y reservas").place(x=40, y=170)
+    agregaringreso = Button(ventana, text = "Menu de clientes y reservas", padx=42, pady=7, command=clientesyreservas)
+    agregaringreso.place(x=90, y=165)
+    
     #
 
     def saldo():
@@ -543,9 +537,11 @@ if __name__ == "__main__":
 ############################################################################################
 ############################################################################################
 ############################################################################################
-    agregaringreso = Button(ventana, text = "Boton 4", padx=47, pady=7, command=acceso)
-    agregaringreso.place(x=200, y=215)
-    etiqueta = Label(ventana, text = "Acceso a instalaciones").place(x=40, y=220)
+
+#   etiqueta = Label(ventana, text = "Acceso a instalaciones").place(x=40, y=220)
+    agregaringreso = Button(ventana, text = "Acceso a instalaciones", padx=55, pady=7, command=acceso)
+    agregaringreso.place(x=90, y=215)
+
 
 #Botoenes opciones avanzadas
 
@@ -685,9 +681,10 @@ if __name__ == "__main__":
 ############################################################################################
 ############################################################################################
     #Botoenes opciones avanzadas
-    agregaringreso = Button(ventana, text = "Boton 5", padx=47, pady=7, command=avanzado)
-    agregaringreso.place(x=200, y=265)
-    etiqueta = Label(ventana, text = "Opciones Avanzadas").place(x=40, y=270)
+
+#   etiqueta = Label(ventana, text = "Opciones Avanzadas").place(x=40, y=270)
+    agregaringreso = Button(ventana, text = "Opciones Avanzadas", padx=60, pady=7, command=avanzado)
+    agregaringreso.place(x=90, y=265)
 
     """
     barraMenu = Menu(ventana)
