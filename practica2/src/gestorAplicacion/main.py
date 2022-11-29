@@ -235,6 +235,12 @@ if __name__ == "__main__":
 
 
 ########barra2
+
+        def Descripcion1():
+            messagebox.showinfo(title="Descripcion", message="Con este software, puede gestionar el parque de diversiones.\nPodrá:\n-verificar la disponibilidad de cupo del parque\n-registrar los ingresos\n-gestionar clientes, reservas y sus tarjetas de usuario\n-Cargar saldos y vender tiquetes para entrar a las atracciones\n-Además agregar nuevas instalaciones y verificar cuándo requieren mantenimiento  ")
+
+
+
         barraInicio =Menu(ventana)
         mnuArchivo=Menu(barraInicio)
         mnuAyuda=Menu(barraInicio)
@@ -242,7 +248,8 @@ if __name__ == "__main__":
        
 
         mnuArchivo.add_command(label="Guardar", command=guardar)
-        mnuArchivo.add_command(label="Archivo")
+        mnuArchivo.add_command(label="Aplicacion" ,command=Descripcion1)
+        mnuArchivo.add_command(label="Salir")
 
         menuProcesosYConsultas.add_cascade(label="Venta y descuento: Permite hacer ventas, y automaicamente cada 5 compras del mismo cliente, hace descuento a la siguiente")
         menuProcesosYConsultas.add_cascade(label="Creación de reservas: Permite reservar entradas (y posteriormente concretarlas a ingresos)")
@@ -258,7 +265,7 @@ if __name__ == "__main__":
         mnuAyuda.add_command(label="-Luis José Mejía")
 
 
-        barraInicio.add_cascade(label="Inicio", menu=mnuArchivo)
+        barraInicio.add_cascade(label="Archivo", menu=mnuArchivo)
         barraInicio.add_cascade(label="Procesos y Consultas", menu=menuProcesosYConsultas)
         barraInicio.add_cascade(label="Ayuda", menu=mnuAyuda)
         
